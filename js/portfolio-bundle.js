@@ -487,7 +487,10 @@ function initPortfolio(config = {}) {
     enableGreeting = false
   } = config;
 
-  const cursor = new CustomCursor();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  const cursor = (!reduceMotion && !isTouchDevice) ? new CustomCursor() : null;
   const navigation = new SectionNavigation(totalSections);
   window.sectionNav = navigation;
 
@@ -502,7 +505,7 @@ function initPortfolio(config = {}) {
   const navbar = new NavbarManager();
 
   let greeting = null;
-  if (enableGreeting) {
+  if (enableGreeting && !reduceMotion) {
     greeting = new GreetingRotator('greeting');
   }
 

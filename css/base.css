@@ -62,6 +62,24 @@ body {
   object-fit: cover;
 }
 
+/* Restore native cursor/tap feedback on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Respect OS-level "Reduce Motion" preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.1ms !important;
+  }
+}
+
 /* Compact layout for shorter viewports (e.g. 14" laptops with browser chrome) */
 @media (max-height: 900px) {
   .section-padding {
