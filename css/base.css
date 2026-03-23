@@ -61,3 +61,28 @@ body {
   width: 100%;
   object-fit: cover;
 }
+
+/* Compact layout for shorter viewports (e.g. 14" laptops with browser chrome) */
+@media (max-height: 900px) {
+  .section-padding {
+    padding-top: clamp(1.25rem, 3vh, 2.5rem);
+    padding-bottom: clamp(0.75rem, 2vh, 1.25rem);
+  }
+
+  .section-padding-extra {
+    padding-top: clamp(1.25rem, 3vh, 2.5rem);
+    padding-bottom: clamp(1rem, 2.5vh, 1.5rem);
+  }
+
+  .responsive-heading-xl {
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+  }
+
+  .responsive-heading-lg {
+    font-size: clamp(1.75rem, 3.5vw, 3.5rem);
+  }
+
+  .responsive-heading-md {
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+  }
+}

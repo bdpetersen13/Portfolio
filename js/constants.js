@@ -18,7 +18,7 @@ export const TIMING = {
 
 // Section counts for each page
 export const SECTIONS = {
-  MAIN: 6,          // brandon_website.html
+  MAIN: 6,          // index.html
   WORK: 5,          // work.html
   IBG_CASE_STUDY: 10,      // IBG_Case_Study.html
   CURBSIDE_CASE_STUDY: 13  // curbside_case_study.html

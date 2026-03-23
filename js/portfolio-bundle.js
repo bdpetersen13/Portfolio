@@ -231,7 +231,10 @@ class SectionNavigation {
     const newSection = document.getElementById(`section-${sectionIndex}`);
 
     if (oldSection) oldSection.classList.remove('active');
-    if (newSection) newSection.classList.add('active');
+    if (newSection) {
+      newSection.classList.add('active');
+      newSection.scrollTop = 0; // reset scroll position when entering a section
+    }
 
     this.currentSection = sectionIndex;
     this.updateDots();
@@ -254,6 +257,20 @@ class SectionNavigation {
   }
 
   handleWheel(e) {
+    // If the active section has overflowing content, let it scroll naturally
+    // until it reaches the top or bottom edge, then navigate sections.
+    const activeSection = document.querySelector('.section.active');
+    if (activeSection) {
+      const { scrollTop, scrollHeight, clientHeight } = activeSection;
+      const isScrollable = scrollHeight > clientHeight + 2;
+      if (isScrollable) {
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 4;
+        const atTop = scrollTop <= 0;
+        if (e.deltaY > 0 && !atBottom) return; // let section scroll down
+        if (e.deltaY < 0 && !atTop) return;    // let section scroll up
+      }
+    }
+
     e.preventDefault();
 
     const now = Date.now();

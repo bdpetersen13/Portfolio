@@ -26,14 +26,11 @@ Each page uses full-page section-snap navigation. The section count must match t
 | `IBG_Case_Study.html` | 10 |
 | `curbside_case_study.html` | 13 |
 
-### JavaScript: Bundle vs. Modules
+### JavaScript
 
-The `js/` directory contains two parallel implementations:
+**`js/portfolio-bundle.js`** is the single source of truth for all JavaScript behavior. It is loaded by every HTML page and is the only JS file that runs at runtime.
 
-- **`js/portfolio-bundle.js`** — Single concatenated file actually used by all HTML pages. This is the source of truth for runtime behavior.
-- **`js/*.js` (modular files)** — ES6 module versions (`cursor.js`, `navigation.js`, `theme.js`, `navbar.js`, `greeting.js`, `main.js`, `constants.js`). These are maintained separately but are NOT loaded by any HTML page.
-
-When making logic changes, update **both** `portfolio-bundle.js` and the corresponding modular file to keep them in sync.
+**`js/constants.js`** is a human-readable reference for all configuration constants. It is not loaded by any page — all constants are duplicated at the top of `portfolio-bundle.js`. When changing a constant value, update it in `portfolio-bundle.js` (and optionally `constants.js` for documentation purposes).
 
 ### Initialization Pattern
 
