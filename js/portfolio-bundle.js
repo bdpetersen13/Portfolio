@@ -73,6 +73,9 @@ class CustomCursor {
   }
 
   init() {
+    this.cachedElements = document.querySelectorAll(
+      'button, a, .dot, [onclick], .theme-toggle, .project-card'
+    );
     document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     document.addEventListener('mouseleave', () => this.handleMouseLeave());
     document.addEventListener('mouseenter', () => this.handleMouseEnter());
@@ -93,9 +96,7 @@ class CustomCursor {
   }
 
   findMagneticTarget() {
-    const interactiveElements = document.querySelectorAll(
-      'button, a, .dot, [onclick], .theme-toggle, .project-card'
-    );
+    const interactiveElements = this.cachedElements;
 
     let foundTarget = null;
     let minDistance = this.snapDistance;
@@ -153,7 +154,7 @@ class CustomCursor {
     this.cursorEl.style.left = this.cursorX + 'px';
     this.cursorEl.style.top = this.cursorY + 'px';
 
-    requestAnimationFrame(() => this.animate());
+    this.rafId = requestAnimationFrame(() => this.animate());
   }
 }
 
@@ -398,6 +399,7 @@ class NavbarManager {
 
     this.lastMouseY = 0;
     this.navbarHidden = false;
+    this.hideTimeout = null;
     this.init();
   }
 
@@ -417,7 +419,8 @@ class NavbarManager {
     if (e.clientY < NAVBAR.SHOW_THRESHOLD) {
       this.show();
     } else if (e.clientY > NAVBAR.HIDE_THRESHOLD && !this.navbarHidden) {
-      setTimeout(() => {
+      clearTimeout(this.hideTimeout);
+      this.hideTimeout = setTimeout(() => {
         if (this.lastMouseY > NAVBAR.HIDE_THRESHOLD) {
           this.hide();
         }
@@ -462,7 +465,7 @@ class GreetingRotator {
 
   init() {
     this.greetingElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    setInterval(() => this.rotate(), TIMING.GREETING_ROTATION);
+    this.intervalId = setInterval(() => this.rotate(), TIMING.GREETING_ROTATION);
   }
 
   rotate() {
