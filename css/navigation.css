@@ -1,0 +1,91 @@
+/**
+ * Navigation Styles
+ * Section navigation, dot navigation, and navbar
+ */
+
+/* Section container styles */
+.section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* Hide scrollbars while keeping scroll functionality */
+.section::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Dot navigation */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  border-color: white;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  border-color: white;
+  transform: scale(1.1);
+}
+
+/* Light mode dot styles */
+body.light-mode .dot {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .dot.active {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+}
+
+body.light-mode .dot:hover {
+  border-color: #0a0a0a;
+}
+
+/* Touch zones for mobile interaction */
+.touch-zone-next {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 9;
+}
+
+.touch-zone-prev {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 9;
+}

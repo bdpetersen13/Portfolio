@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam's Club IBG - Case Study | Brandon Petersen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hide default cursor */
+        * {
+            cursor: none !important;
+        }
+
+        /* Custom circular cursor */
+        #custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        #custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+        .section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+            z-index: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Hide scrollbars while keeping scroll functionality */
+        .section::-webkit-scrollbar {
+            display: none;
+        }
+        .section {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Responsive text scaling */
+        .responsive-heading-xl {
+            font-size: clamp(2rem, 4vw, 4.5rem);
+            line-height: 1.1;
+        }
+        .responsive-heading-lg {
+            font-size: clamp(1.75rem, 3.5vw, 3.5rem);
+            line-height: 1.2;
+        }
+        .responsive-heading-md {
+            font-size: clamp(1.25rem, 2.5vw, 2rem);
+            line-height: 1.3;
+        }
+        .responsive-heading-sm {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            line-height: 1.3;
+        }
+        .responsive-text-lg {
+            font-size: clamp(0.95rem, 1.4vw, 1.125rem);
+            line-height: 1.5;
+        }
+        .responsive-text-base {
+            font-size: clamp(0.825rem, 1.1vw, 1rem);
+            line-height: 1.6;
+        }
+
+        /* Responsive spacing */
+        .section-padding {
+            padding-top: clamp(2.5rem, 6vh, 4rem);
+            padding-bottom: clamp(1rem, 3vh, 1.5rem);
+        }
+        .section-padding-extra {
+            padding-top: clamp(3rem, 7vh, 5rem);
+            padding-bottom: clamp(2rem, 5vh, 3rem);
+        }
+
+        /* Responsive image constraints */
+        .responsive-image {
+            max-height: clamp(200px, 25vh, 300px);
+            width: 100%;
+            object-fit: cover;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background: white;
+            border-color: white;
+            transform: scale(1.2);
+        }
+        .dot:hover {
+            border-color: white;
+            transform: scale(1.1);
+        }
+        .touch-zone-next {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            z-index: 9;
+        }
+        .touch-zone-prev {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            z-index: 9;
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background: white;
+        }
+        body.light-mode .bg-black {
+            background: white;
+        }
+        body.light-mode .text-white {
+            color: #0a0a0a;
+        }
+        body.light-mode .text-white\/95 {
+            color: rgba(10, 10, 10, 0.95);
+        }
+        body.light-mode .text-white\/90 {
+            color: rgba(10, 10, 10, 0.9);
+        }
+        body.light-mode .text-white\/80 {
+            color: rgba(10, 10, 10, 0.8);
+        }
+        body.light-mode .text-white\/70 {
+            color: rgba(10, 10, 10, 0.7);
+        }
+        body.light-mode .text-white\/60 {
+            color: rgba(10, 10, 10, 0.6);
+        }
+        body.light-mode .text-white\/50 {
+            color: rgba(10, 10, 10, 0.5);
+        }
+        body.light-mode .text-white\/40 {
+            color: rgba(10, 10, 10, 0.4);
+        }
+        body.light-mode #custom-cursor {
+            background: rgba(0, 0, 0, 0.8);
+            mix-blend-mode: normal;
+        }
+        body.light-mode #custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 0, 0, 0.8);
+        }
+        body.light-mode .dot {
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+        body.light-mode .dot.active {
+            background: #0a0a0a;
+            border-color: #0a0a0a;
+        }
+        body.light-mode .dot:hover {
+            border-color: #0a0a0a;
+        }
+        body.light-mode .fixed[style*="background: linear-gradient"] {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #f0f0f0 100%) !important;
+            filter: brightness(1.2);
+        }
+        /* Tag bubbles in light mode */
+        body.light-mode span[class*="bg-white/10"] {
+            background: rgba(0, 0, 0, 0.12) !important;
+            color: rgba(10, 10, 10, 0.85) !important;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        /* Light mode button styles */
+        body.light-mode button[style*="radial-gradient"],
+        body.light-mode a[style*="radial-gradient"] {
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15) !important;
+            background: radial-gradient(ellipse at bottom, rgba(200, 200, 200, 1) 0%, rgba(230, 230, 230, 1) 100%) !important;
+            color: #0a0a0a !important;
+        }
+        body.light-mode button[style*="radial-gradient"] span,
+        body.light-mode a[style*="radial-gradient"] span {
+            color: #0a0a0a !important;
+        }
+        body.light-mode button[style*="radial-gradient"] .z-10,
+        body.light-mode a[style*="radial-gradient"] .z-10 {
+            color: #0a0a0a !important;
+        }
+        body.light-mode button[style*="background:transparent"],
+        body.light-mode a[style*="background:transparent"] {
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15) !important;
+            background: rgba(0, 0, 0, 0.05) !important;
+            color: #0a0a0a !important;
+        }
+        body.light-mode button[style*="background:transparent"] span,
+        body.light-mode a[style*="background:transparent"] span {
+            color: #0a0a0a !important;
+        }
+        /* Badge styles in light mode */
+        body.light-mode div[style*="background: rgba(255, 255, 255"] {
+            background: rgba(0, 0, 0, 0.08) !important;
+            border: 1px solid rgba(0, 0, 0, 0.15) !important;
+            color: #0a0a0a !important;
+        }
+        /* Navbar background in light mode */
+        body.light-mode .max-w-5xl[style*="background: rgba(255, 255, 255"] {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+        }
+        /* Theme toggle button */
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        body.light-mode .theme-toggle {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+        }
+        /* Placeholder image styles */
+        .placeholder-image {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        body.light-mode .placeholder-image {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black font-inter">
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full -z-10 h-screen bg-cover bg-center brightness-50" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);"></div>
+
+    <!-- Touch zones -->
+    <div class="touch-zone-next" id="touch-next"></div>
+    <div class="touch-zone-prev" id="touch-prev"></div>
+
+    <!-- Fixed Navigation -->
+    <div id="navbar" class="fixed z-50 bg-transparent pt-6 pr-6 pb-6 pl-6 top-0 right-0 left-0 transition-transform duration-300 ease-in-out">
+        <div class="max-w-5xl border-white/20 border rounded-full mr-auto ml-auto pt-3 pr-6 pb-3 pl-6" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="cursor-pointer text-lg font-semibold text-white tracking-tight font-geist" role="button">Brandon Petersen</a>
+                </div>
+                <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
+                    <li><a href="index.html" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">About</a></li>
+                    <li><a href="work.html" class="nav-link cursor-pointer text-white bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Work</a></li>
+                    <li><a href="index.html#contact" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Contact</a></li>
+                </ul>
+                <div class="flex gap-2 items-center">
+                    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div class="relative inline-block group">
+                        <button class="group inline-flex min-w-[120px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-sm font-normal text-white/70 tracking-tight font-geist rounded-full pt-[12px] pr-[17px] pb-[12px] pl-[17px] relative items-center justify-center" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Download Resume</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </button>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dot Navigation -->
+    <div class="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+        <div class="dot active" onclick="goToSection(0)" data-section="0"></div>
+        <div class="dot" onclick="goToSection(1)" data-section="1"></div>
+        <div class="dot" onclick="goToSection(2)" data-section="2"></div>
+        <div class="dot" onclick="goToSection(3)" data-section="3"></div>
+        <div class="dot" onclick="goToSection(4)" data-section="4"></div>
+        <div class="dot" onclick="goToSection(5)" data-section="5"></div>
+        <div class="dot" onclick="goToSection(6)" data-section="6"></div>
+        <div class="dot" onclick="goToSection(7)" data-section="7"></div>
+        <div class="dot" onclick="goToSection(8)" data-section="8"></div>
+        <div class="dot" onclick="goToSection(9)" data-section="9"></div>
+    </div>
+
+    <!-- Section 0: Hero -->
+    <div class="section active" id="section-0">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="relative z-10 max-w-5xl text-center section-padding">
+                <div class="mb-6">
+                    <div class="text-sm text-white/50 mb-4 font-geist uppercase tracking-wider">Case Study</div>
+                    <div class="text-base text-white/60 mb-2 font-geist">Sam's Club (Walmart)</div>
+                    <h1 class="responsive-heading-xl tracking-tight font-geist max-w-5xl mx-auto text-white mb-6 leading-tight">
+                        IBG Financial Forecasting & Planning Tool
+                    </h1>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto leading-relaxed">
+                        Transforming financial planning through AI-powered intelligence and automation
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 max-w-4xl mx-auto mt-8">
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        +30% Forecast Accuracy
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        60% Faster Planning
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        1,800+ hrs/year Saved
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 1: Project Overview -->
+    <div class="section" id="section-1">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Project <span class="italic" style="font-family: 'Playfair Display', serif;">Overview</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <!-- Left Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">My Role</h3>
+                            <p class="text-white/70 leading-relaxed">Product Manager</p>
+                            <p class="text-white/70 leading-relaxed mt-2">Product Strategy, Roadmap Planning, Cross-functional Leadership</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Timeline</h3>
+                            <p class="text-white/70 leading-relaxed">12 months (2024-2025)</p>
+                            <p class="text-white/70 leading-relaxed mt-2">Discovery, MVP Build, Phased Rollout, Scale</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Team</h3>
+                            <p class="text-white/70 leading-relaxed">Cross-functional team of 28</p>
+                            <p class="text-white/70 leading-relaxed mt-2">Product, Engineering, Data Science, Design, Finance</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Tools & Technologies</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Jira</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Productboard</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Mixpanel</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">SQL</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Gen AI/ML</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Key Metrics</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-white/70">Active Users</span>
+                                    <span class="text-white font-semibold">139+</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-white/70">Organization Adoption</span>
+                                    <span class="text-white font-semibold">100%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-white/70">Time Saved Annually</span>
+                                    <span class="text-white font-semibold">1,800+ hrs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Platform</h3>
+                            <p class="text-white/70 leading-relaxed">Enterprise Web Application</p>
+                            <p class="text-white/70 leading-relaxed mt-2">Real-time Financial Planning & Analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 2: Problem -->
+    <div class="section" id="section-2">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full section-padding-extra">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
+                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Problem</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Critical business decisions delayed by weeks due to manual processes and data fragmentation
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-4 items-stretch mb-4">
+                    <!-- Problem Image -->
+                    <div class="rounded-2xl overflow-hidden flex items-stretch" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <img src="images/case-studies/TheProblem.PNG" alt="The Problem - Manual processes and fragmented data" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <div class="responsive-heading-md font-bold text-white mb-2">1,800+</div>
+                            <div class="text-white/70 leading-relaxed text-sm">Hours wasted annually in Excel and fragmented BI tools</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <div class="responsive-heading-md font-bold text-white mb-2">12+</div>
+                            <div class="text-white/70 leading-relaxed text-sm">Different systems with siloed, inconsistent data</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <div class="responsive-heading-md font-bold text-white mb-2">0</div>
+                            <div class="text-white/70 leading-relaxed text-sm">Real-time visibility into financial performance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                    <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist text-center">Core Challenges</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="text-white font-semibold mb-3">Strategic Paralysis</h4>
+                            <p class="text-white/70 leading-relaxed text-sm">Executive decision-making delayed 2-3 weeks waiting for financial consolidation, causing missed market opportunities and reactive business moves.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold mb-3">Data Fragmentation Risk</h4>
+                            <p class="text-white/70 leading-relaxed text-sm">Critical P&L data scattered across 12+ systems created version control issues, conflicting reports, and eroded stakeholder confidence in financial insights.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold mb-3">Competitive Disadvantage</h4>
+                            <p class="text-white/70 leading-relaxed text-sm">Outdated reporting cycles meant leadership made strategic decisions on 2-week old data while competitors operated with real-time market intelligence.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold mb-3">Forecast Unreliability</h4>
+                            <p class="text-white/70 leading-relaxed text-sm">Manual forecasting methods led to 30%+ forecast variance, undermining budget planning, resource allocation, and investor confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 3: Solution -->
+    <div class="section" id="section-3">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
+                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Solution</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Strategic product vision built on three value pillars driving measurable business outcomes
+                    </p>
+                </div>
+
+                <!-- Solution Image -->
+                <div class="rounded-2xl overflow-hidden mb-4">
+                    <img src="images/case-studies/TheSolution.PNG" alt="The Solution - Three core pillars" class="w-full h-auto object-cover responsive-image">
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <!-- Pillar 1 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-300">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Data Unification Strategy</h3>
+                        <p class="text-white/70 leading-relaxed mb-4">Product strategy to consolidate 12+ systems, eliminating data silos and establishing single source of truth for executive decision-making</p>
+                        <ul class="space-y-2 text-sm text-white/60">
+                            <li>• Real-time data pipeline architecture</li>
+                            <li>• Automated validation reducing errors 95%</li>
+                            <li>• Executive P&L dashboard enabling daily insights</li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-300">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">AI-Driven Automation</h3>
+                        <p class="text-white/70 leading-relaxed mb-4">ML product capabilities delivering 1,800+ hours annual efficiency gains and 30% forecast accuracy improvement through intelligent automation</p>
+                        <ul class="space-y-2 text-sm text-white/60">
+                            <li>• Predictive forecasting models (ML/AI)</li>
+                            <li>• Automated scenario planning workflows</li>
+                            <li>• Intelligent anomaly alerts reducing manual review 80%</li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                                <line x1="12" y1="20" x2="12" y2="10"></line>
+                                <line x1="18" y1="20" x2="18" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="16"></line>
+                            </svg>
+                        </div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Strategic Velocity</h3>
+                        <p class="text-white/70 leading-relaxed mb-4">Product features accelerating executive decision-making from weeks to days, enabling proactive strategy vs reactive firefighting</p>
+                        <ul class="space-y-2 text-sm text-white/60">
+                            <li>• Real-time executive KPI dashboards</li>
+                            <li>• What-if scenario modeling for strategic planning</li>
+                            <li>• Cross-functional collaboration workflows</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 4: Design Process -->
+    <div class="section" id="section-4">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
+                        Product Development <span class="italic" style="font-family: 'Playfair Display', serif;">Approach</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Data-driven product methodology balancing customer needs with business strategy
+                    </p>
+                </div>
+
+                <!-- Design Process Image -->
+                <div class="rounded-2xl overflow-hidden mb-4">
+                    <img src="images/case-studies/DesignProcess.PNG" alt="Design Process - Double Diamond methodology" class="w-full h-auto object-cover responsive-image">
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <!-- Discover -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">1. Discovery & Research</h3>
+                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Validate market opportunity and define product-market fit</p>
+                        <ul class="space-y-1 text-xs text-white/60">
+                            <li>• Executive stakeholder interviews (CFO, VP Finance)</li>
+                            <li>• Data audit of 12+ systems and integration points</li>
+                            <li>• User research with 25+ finance team members</li>
+                            <li>• Competitive analysis and build vs. buy assessment</li>
+                        </ul>
+                    </div>
+
+                    <!-- Define -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">2. Strategy & Roadmap</h3>
+                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Define product vision, prioritize features, and build business case</p>
+                        <ul class="space-y-1 text-xs text-white/60">
+                            <li>• Product vision and 18-month roadmap definition</li>
+                            <li>• Feature prioritization using RICE framework</li>
+                            <li>• ROI analysis and executive buy-in presentation</li>
+                            <li>• Success metrics tied to business KPIs</li>
+                        </ul>
+                    </div>
+
+                    <!-- Develop -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">3. Build & Validate</h3>
+                        <p class="text-white/70 leading-relaxed mb-3 text-sm">MVP development with continuous user validation and iteration</p>
+                        <ul class="space-y-1 text-xs text-white/60">
+                            <li>• Agile sprints with bi-weekly releases to beta users</li>
+                            <li>• A/B testing on key workflows and UI patterns</li>
+                            <li>• ML model training with historical financial data</li>
+                            <li>• Product-led iteration based on usage analytics</li>
+                        </ul>
+                    </div>
+
+                    <!-- Deliver -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">4. Launch & Scale</h3>
+                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Go-to-market execution and data-driven optimization at scale</p>
+                        <ul class="space-y-1 text-xs text-white/60">
+                            <li>• Phased rollout with change management strategy</li>
+                            <li>• Cross-functional GTM: training, comms, support</li>
+                            <li>• KPI tracking dashboards for stakeholder reporting</li>
+                            <li>• Product analytics driving feature iteration roadmap</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 5: Built Features -->
+    <div class="section" id="section-5">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
+                <div class="text-center mb-1">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-0.5">
+                        Key <span class="italic" style="font-family: 'Playfair Display', serif;">Features</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Prioritized features delivering immediate business value and competitive advantage
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <!-- Feature 1 -->
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="overflow-hidden">
+                            <img src="/Users/brandonpetersen/Developer/Portfolio/images/case-studies/UnifiedP&L.PNG"L.PNG" alt="Unified P&L Dashboard" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Unified P&L Dashboard</h3>
+                            <p class="text-white/70 text-xs leading-relaxed">Executive-level product feature consolidating 12+ data sources into single real-time view. Prioritized #1 for immediate business impact on decision velocity.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="overflow-hidden">
+                            <img src="images/case-studies/AI-Powered.PNG" alt="AI-Powered Forecasting" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-base font-semibold text-white mb-1 font-geist">AI-Powered Forecasting</h3>
+                            <p class="text-white/70 text-xs leading-relaxed">ML product capability reducing forecast variance 30% and saving 800+ hours/year. Differentiated feature creating competitive moat vs. legacy tools.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="overflow-hidden">
+                            <img src="images/case-studies/ScenarioPlanning.PNG" alt="Scenario Planning" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Scenario Planning</h3>
+                            <p class="text-white/70 text-xs leading-relaxed">Strategic planning tool enabling executives to model market scenarios in minutes vs. weeks. Drove 60% faster planning cycles and increased strategic agility.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="overflow-hidden">
+                            <img src="images/case-studies/Collaborative.PNG" alt="Collaborative Workflows" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Collaborative Workflows</h3>
+                            <p class="text-white/70 text-xs leading-relaxed">Cross-functional product feature breaking down silos between finance, operations, and merchandising. Enabled 100% org adoption through network effects.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 6: Impact & Metrics -->
+    <div class="section" id="section-6">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
+                <div class="text-center mb-1">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-0.5">
+                        Impact & <span class="italic" style="font-family: 'Playfair Display', serif;">Results</span>
+                    </h2>
+                    <p class="text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Quantifiable business outcomes demonstrating product-market fit and ROI
+                    </p>
+                </div>
+
+                <!-- Impact & Results Image -->
+                <div class="rounded-2xl overflow-hidden mb-3">
+                    <img src="/Users/brandonpetersen/Developer/Portfolio/images/case-studies/Impact&Results.PNG"Results.PNG" alt="Impact & Results - Measurable outcomes" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3 mb-3">
+                    <!-- Primary Metrics -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="text-base font-semibold text-white mb-3 font-geist">Primary Metrics</h3>
+                        <div class="space-y-2">
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">+30%</div>
+                                <div class="text-white/70 text-xs">Boost in forecast accuracy</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">60%</div>
+                                <div class="text-white/70 text-xs">Faster planning speed</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">1,800+</div>
+                                <div class="text-white/70 text-xs">Hours saved per year</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Metrics -->
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="text-base font-semibold text-white mb-3 font-geist">Adoption & Engagement</h3>
+                        <div class="space-y-2">
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">139+</div>
+                                <div class="text-white/70 text-xs">Active users across organization</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">100%</div>
+                                <div class="text-white/70 text-xs">Merchandising organization adoption</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white mb-0">Real-time</div>
+                                <div class="text-white/70 text-xs">Executive visibility into P&L</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                    <h3 class="text-base font-semibold text-white mb-2 font-geist">Business Impact</h3>
+                    <p class="text-white/70 leading-relaxed mb-3 text-xs">Product achieved 100% adoption within 6 months of launch, delivering $2.4M+ annual value through efficiency gains and improved forecast accuracy. Platform became critical infrastructure for executive decision-making, influencing $1B+ in annual financial planning decisions.</p>
+                    <div class="grid md:grid-cols-3 gap-2 text-xs">
+                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
+                            <div class="text-white font-semibold mb-1">ROI Achievement</div>
+                            <div class="text-white/70">$2.4M annual value creation through time savings and accuracy gains</div>
+                        </div>
+                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
+                            <div class="text-white font-semibold mb-1">Market Differentiation</div>
+                            <div class="text-white/70">AI forecasting created 2-week competitive advantage in decision speed</div>
+                        </div>
+                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
+                            <div class="text-white font-semibold mb-1">Strategic Enablement</div>
+                            <div class="text-white/70">Platform influences $1B+ annual planning decisions across organization</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 7: Behind the Scenes -->
+    <div class="section" id="section-7">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Behind the <span class="italic" style="font-family: 'Playfair Display', serif;">Scenes</span>
+                    </h2>
+                    <p class="text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Product leadership challenges, stakeholder alignment, and strategic pivots
+                    </p>
+                </div>
+
+                <!-- Behind the Scenes Image -->
+                <div class="rounded-2xl overflow-hidden mb-3">
+                    <img src="images/case-studies/BehindTheScenes.PNG" alt="Behind the Scenes - Challenges and collaboration" class="w-full h-auto object-cover" style="max-height: clamp(240px, 36vh, 370px);">
+                </div>
+
+                <div class="space-y-3">
+                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="text-base font-semibold text-white mb-2 font-geist">Key Challenges</h3>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div>
+                                <h4 class="text-white font-semibold mb-1 text-sm">Technical Feasibility Risk</h4>
+                                <p class="text-white/70 text-xs leading-relaxed">Navigated build vs. buy decision for 12+ system integrations. Built business case for custom solution vs. $800K/year vendor platform.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1 text-sm">Adoption Resistance</h4>
+                                <p class="text-white/70 text-xs leading-relaxed">Overcame "Excel is fine" mindset through phased rollout, power-user program, and demonstrating quick wins in first 30 days.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1 text-sm">AI Model Trust</h4>
+                                <p class="text-white/70 text-xs leading-relaxed">Built stakeholder confidence in ML forecasts through transparent model validation, A/B testing against manual forecasts, and explainable AI features.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1 text-sm">Executive Buy-In</h4>
+                                <p class="text-white/70 text-xs leading-relaxed">Secured $1.2M investment through ROI modeling, competitive analysis, and executive roadmap alignment across CFO, CIO, and SVP Merchandising.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Cross-Functional Leadership</h3>
+                            <p class="text-white/70 leading-relaxed mb-2 text-xs">Led 12-person cross-functional team through agile product development. Established weekly sprint reviews, monthly exec steering committee, and embedded product manager with finance team.</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Sprint Planning</span>
+                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Exec Steering</span>
+                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Stakeholder Mgmt</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Strategic Pivot</h3>
+                            <p class="text-white/70 leading-relaxed text-xs">Product positioning shift from "replacement tool" to "intelligence augmentation" drove adoption breakthrough. Reframed go-to-market messaging from efficiency gains to strategic enablement, turning skeptical users into champions and accelerating org-wide rollout by 3 months.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 8: Key Learnings -->
+    <div class="section" id="section-8">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                <div class="text-center mb-6">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Key <span class="italic" style="font-family: 'Playfair Display', serif;">Learnings</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Strategic product lessons from leading enterprise AI/ML platform development
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Learning 1 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="text-3xl mb-3">💡</div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Product Positioning Drives Adoption</h3>
+                        <p class="text-white/70 leading-relaxed text-sm">How you position AI products determines adoption success. Framing our platform as "intelligence augmentation" vs. "workforce replacement" transformed resistant users into champions, achieving 100% adoption in 6 months. Product-market messaging is as critical as product-market fit.</p>
+                    </div>
+
+                    <!-- Learning 2 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="text-3xl mb-3">🤖</div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Build vs. Buy Requires ROI Rigor</h3>
+                        <p class="text-white/70 leading-relaxed text-sm">Led build vs. buy analysis comparing $1.2M custom platform to $800K/year vendor solution. Custom build won through 3-year TCO modeling, competitive differentiation analysis, and strategic platform extensibility. PMs must defend architectural decisions with business cases, not just feature comparisons.</p>
+                    </div>
+
+                    <!-- Learning 3 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="text-3xl mb-3">⚡</div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Data-Driven Roadmap Prioritization</h3>
+                        <p class="text-white/70 leading-relaxed text-sm">Used RICE framework to prioritize 40+ feature requests, shipping highest-impact features first. Real-time usage analytics (Mixpanel) drove post-launch iteration, with top 3 features accounting for 85% of user value. Ruthless prioritization and measurement beats feature bloat.</p>
+                    </div>
+
+                    <!-- Learning 4 -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <div class="text-3xl mb-3">🎯</div>
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Executive Sponsorship is Non-Negotiable</h3>
+                        <p class="text-white/70 leading-relaxed text-sm">Secured CFO, CIO, and SVP Merchandising as executive sponsors before development started. Monthly steering committee with C-suite maintained strategic alignment, unblocked integration bottlenecks, and drove org-wide adoption. Enterprise products require executive air cover—PMs must sell up and across, not just down.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 9: CTA -->
+    <div class="section" id="section-9">
+        <div class="h-full flex items-center justify-center px-6">
+            <section class="max-w-5xl text-center">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
+                        Interested in Learning <span class="italic" style="font-family: 'Playfair Display', serif;">More?</span>
+                    </h2>
+                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        I'd love to discuss this project in detail or explore how we can work together on your next product challenge.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                    <div class="relative inline-block group">
+                        <a href="index.html#contact" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Get In Touch</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </a>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                    <a href="work.html" class="inline-flex items-center justify-center gap-2 min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] backdrop-blur font-geist relative" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:transparent;">
+                        <span class="z-10 relative">View More Work</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 max-w-4xl mx-auto">
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        AI & ML Products
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        Enterprise SaaS
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        Product Strategy
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        let isAnimating = false;
+        const totalSections = 10;
+        let lastScrollTime = 0;
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+
+        function goToSection(sectionIndex, force = false) {
+            if (!force && (isAnimating || sectionIndex === currentSection || sectionIndex < 0 || sectionIndex >= totalSections)) return;
+
+            isAnimating = true;
+            const oldSection = document.getElementById(`section-${currentSection}`);
+            const newSection = document.getElementById(`section-${sectionIndex}`);
+
+            if (oldSection) oldSection.classList.remove('active');
+            if (newSection) newSection.classList.add('active');
+
+            currentSection = sectionIndex;
+            updateDots();
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
+
+        function nextSection() {
+            if (currentSection < totalSections - 1) {
+                goToSection(currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 0) {
+                goToSection(currentSection - 1);
+            }
+        }
+
+        // Touch zones click events
+        document.getElementById('touch-next').addEventListener('click', nextSection);
+        document.getElementById('touch-prev').addEventListener('click', prevSection);
+
+        // Wheel event for desktop navigation
+        let wheelTimeout;
+        document.addEventListener('wheel', (e) => {
+            e.preventDefault();
+
+            const now = Date.now();
+            if (now - lastScrollTime < 800 || isAnimating) return;
+
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+                if (e.deltaY > 0) {
+                    lastScrollTime = now;
+                    nextSection();
+                } else if (e.deltaY < 0) {
+                    lastScrollTime = now;
+                    prevSection();
+                }
+            }, 10);
+        }, { passive: false });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (isAnimating) return;
+
+            if (e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSection();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                prevSection();
+            }
+        });
+
+        // Touch events for mobile
+        let touchStartY = 0;
+        let touchStartTime = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndTime = Date.now();
+            const deltaY = touchStartY - touchEndY;
+            const deltaTime = touchEndTime - touchStartTime;
+
+            if (Math.abs(deltaY) > 50 && deltaTime < 500 && !isAnimating) {
+                if (deltaY > 0) {
+                    nextSection();
+                } else {
+                    prevSection();
+                }
+            }
+        }, { passive: true });
+
+        // Prevent default touch behavior on body to avoid scrolling
+        document.body.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Initialize
+        updateDots();
+        goToSection(0, true);
+
+        // ============================================
+        // CUSTOM CURSOR with Magnetic Snap Effect
+        // ============================================
+        const cursor = document.getElementById('custom-cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const interactiveElements = document.querySelectorAll('button, a, .dot, [onclick], .theme-toggle');
+            let foundTarget = null;
+            let minDistance = 50;
+
+            interactiveElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.width === 0 || rect.height === 0) return;
+
+                const isNavbarElement = element.closest('#navbar') || element.classList.contains('dot');
+                const currentSection = document.querySelector('.section.active');
+                if (!isNavbarElement && currentSection && !currentSection.contains(element)) {
+                    return;
+                }
+
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const distance = Math.sqrt(Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2));
+
+                const isDirectlyOver = mouseX >= rect.left && mouseX <= rect.right &&
+                                      mouseY >= rect.top && mouseY <= rect.bottom;
+
+                if (isDirectlyOver && distance < 100) {
+                    foundTarget = { x: centerX, y: centerY, element, distance };
+                    minDistance = distance;
+                } else if (!isDirectlyOver && distance < 50) {
+                    if (distance < minDistance) {
+                        foundTarget = { x: centerX, y: centerY, element, distance };
+                        minDistance = distance;
+                    }
+                }
+            });
+
+            if (foundTarget) {
+                const snapStrength = 0.5;
+                cursorX += (foundTarget.x - cursorX) * snapStrength;
+                cursorY += (foundTarget.y - cursorY) * snapStrength;
+                cursor.classList.add('hover');
+            } else {
+                const easing = 0.15;
+                cursorX += (mouseX - cursorX) * easing;
+                cursorY += (mouseY - cursorY) * easing;
+                cursor.classList.remove('hover');
+            }
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // ============================================
+        // AUTO-HIDE NAVIGATION BAR
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        let lastMouseY = 0;
+        let navbarHidden = false;
+
+        document.addEventListener('mousemove', (e) => {
+            lastMouseY = e.clientY;
+
+            if (e.clientY < 100) {
+                navbar.style.transform = 'translateY(0)';
+                navbarHidden = false;
+            } else if (e.clientY > 150 && !navbarHidden) {
+                setTimeout(() => {
+                    if (lastMouseY > 150) {
+                        navbar.style.transform = 'translateY(-100%)';
+                        navbarHidden = true;
+                    }
+                }, 1000);
+            }
+        });
+
+        setTimeout(() => {
+            if (lastMouseY > 150) {
+                navbar.style.transform = 'translateY(-100%)';
+                navbarHidden = true;
+            }
+        }, 3000);
+
+        // ============================================
+        // THEME TOGGLE
+        // ============================================
+        function toggleTheme() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+                sessionStorage.setItem('theme', 'light');
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+                sessionStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = sessionStorage.getItem('theme');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>

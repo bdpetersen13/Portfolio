@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon Petersen - Product Manager</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Modular CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body class="bg-black font-inter">
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Background Image -->
+    <div class="fixed top-0 w-full -z-10 h-screen bg-cover bg-center brightness-50" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);"></div>
+
+    <!-- Touch zones for mobile interaction -->
+    <div class="touch-zone-next" id="touch-next"></div>
+    <div class="touch-zone-prev" id="touch-prev"></div>
+
+    <!-- Fixed Navigation -->
+    <div id="navbar" class="fixed z-50 bg-transparent pt-6 pr-6 pb-6 pl-6 top-0 right-0 left-0 transition-transform duration-300 ease-in-out">
+        <div class="max-w-5xl border-white/20 border rounded-full mr-auto ml-auto pt-3 pr-6 pb-3 pl-6" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="cursor-pointer text-lg font-semibold text-white tracking-tight font-geist" onclick="goToSection(0)" role="button">Brandon Petersen</span>
+                </div>
+                <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
+                    <li><a href="#" data-section="0" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Home</a></li>
+                    <li><a href="#" data-section="1" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">About</a></li>
+                    <li><a href="work.html" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Work</a></li>
+                    <li><a href="#" data-section="5" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Contact</a></li>
+                </ul>
+                <div class="flex gap-2 items-center">
+                    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div class="relative inline-block group">
+                        <button class="group inline-flex min-w-[120px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-sm font-normal text-white/70 tracking-tight font-geist rounded-full pt-[12px] pr-[17px] pb-[12px] pl-[17px] relative items-center justify-center" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Download Resume</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </button>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dot Navigation -->
+    <div class="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+        <div class="dot active" onclick="goToSection(0)" data-section="0"></div>
+        <div class="dot" onclick="goToSection(1)" data-section="1"></div>
+        <div class="dot" onclick="goToSection(2)" data-section="2"></div>
+        <div class="dot" onclick="goToSection(3)" data-section="3"></div>
+        <div class="dot" onclick="goToSection(4)" data-section="4"></div>
+        <div class="dot" onclick="goToSection(5)" data-section="5"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="section active" id="section-0">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="relative z-10 max-w-5xl text-center section-padding">
+                <div class="mb-6">
+                    <h2 class="responsive-heading-xl font-light text-white/95 font-geist text-center tracking-tight">
+                        <span class="greeting-text" id="greeting">Hi</span>!<br>
+                        I'm Brandon.
+                    </h2>
+                </div>
+
+                <h1 class="responsive-heading-lg tracking-tight font-geist max-w-5xl mx-auto text-white mb-5">
+                    Shaping <span class="italic text-white tracking-tight" style="font-family: 'Playfair Display', serif;">experiences</span> that drive loyalty
+                </h1>
+
+                <p class="responsive-text-lg font-normal text-white/80 font-geist max-w-3xl mx-auto mb-8">
+                    Product Manager building products users love and businesses need. Specializing in AI/ML-driven products, user experiences, data-driven growth, and delivering measurable business outcomes.
+                </p>
+
+                <div class="flex flex-col gap-3 sm:flex-row items-center justify-center">
+                    <div class="relative inline-block group">
+                        <button onclick="goToSection(4)" class="group inline-flex min-w-[140px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight font-geist rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">View Work</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </button>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                    <button onclick="goToSection(1)" class="inline-flex items-center justify-center gap-2 min-w-[140px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] backdrop-blur font-geist relative" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:transparent;">
+                        <span class="z-10 relative">Learn more</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="section" id="section-1">
+        <div class="flex h-full px-6 items-center justify-center">
+            <section class="max-w-5xl text-center w-full section-padding">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Experience <span class="italic" style="font-family: 'Playfair Display', serif;">is the Product, </span> I Plus It
+                    </h2>
+                    <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        10+ years building enterprise products at Fortune 1 scale—specializing in operations, fintech, omni-commerce, and AI-driven internal tools that drive measurable business outcomes. I thrive at the intersection of user needs, business goals, and technical possibilities.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 items-start text-left">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square">
+                            <img src="images/profile/IMG_4120.jpg" alt="Brandon Petersen" class="w-full h-full object-cover" loading="lazy">
+                            <div class="bg-gradient-to-t from-black/40 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="responsive-text-base text-white/80">
+                            As a Product Manager with an operations & technical background, I thrive at building products that create meaningful impact — products that solve real problems, deliver measurable value, and elevate the user experience.
+                        </p>
+                        <p class="responsive-text-base text-white/80">
+                            My approach is grounded in user empathy, people-first mindset, and data-informed decision making I utilize AI as a tool in my process — not a buzzword — enabling smarter decisions and more adaptive user experiences.
+                        </p>
+                        <p class="responsive-text-base text-white/80">
+                            At the core, I believe great products empower people and elevate outcomes. Whether it's helping teams work smarter or helping customers achieve more, I focus on creating experiences that don't just meet expectations — they Plus It
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <div class="responsive-heading-md font-semibold tracking-tight text-white">10+</div>
+                                <div class="text-xs mt-1 text-white/60">Years Experience</div>
+                            </div>
+                            <div>
+                                <div class="responsive-heading-md font-semibold tracking-tight text-white">10+</div>
+                                <div class="text-xs mt-1 text-white/60">Projects Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="section" id="section-2">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="relative z-10 max-w-5xl text-center section-padding">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Proven <span class="italic" style="font-family: 'Playfair Display', serif;">Impact</span>
+                    </h2>
+                    <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Measurable outcomes from 10+ years building products at Fortune 1 scale
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                    <div class="p-4 rounded-2xl glass-card">
+                        <div class="responsive-heading-md font-semibold tracking-tight text-white mb-2">$2.4M+</div>
+                        <div class="text-sm text-white/60">Annual Value Created</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <div class="responsive-heading-md font-semibold tracking-tight text-white mb-2">100%</div>
+                        <div class="text-sm text-white/60">Product Adoption Rate</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <div class="responsive-heading-md font-semibold tracking-tight text-white mb-2">1,800+</div>
+                        <div class="text-sm text-white/60">Hours Saved Annually</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <div class="responsive-heading-md font-semibold tracking-tight text-white mb-2">139+</div>
+                        <div class="text-sm text-white/60">Enterprise Users</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-6 text-sm text-white/50">
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/40">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span>Fortune 1 Experience</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/40">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                        </svg>
+                        <span>AI/ML Products</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/40">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        <span>0→1 Product Launches</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Skills & Expertise Section -->
+    <div class="section" id="section-3">
+        <div class="flex h-full px-6 items-center justify-center">
+            <section class="max-w-5xl text-center w-full section-padding">
+                    <!-- Skills & Expertise -->
+                    <div class="mb-8">
+                        <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                            Skills & <span class="italic" style="font-family: 'Playfair Display', serif;">Expertise</span>
+                        </h2>
+                        <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto mb-8">
+                            A comprehensive toolkit built through years of hands-on experience in product management, AI integration, and cross-functional leadership.
+                        </p>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+                            <!-- Product Strategy & Vision -->
+                            <div class="p-4 rounded-2xl glass-card">
+                                <h4 class="text-base font-semibold text-white mb-3">Product Strategy & Vision</h4>
+                                <ul class="space-y-1.5 text-white/70 text-xs">
+                                    <li>• Product Strategy</li>
+                                    <li>• Roadmap & OKRs</li>
+                                    <li>• Market & Competitor Analysis</li>
+                                </ul>
+                            </div>
+
+                            <!-- Execution & Delivery -->
+                            <div class="p-4 rounded-2xl glass-card">
+                                <h4 class="text-base font-semibold text-white mb-3">Execution & Delivery</h4>
+                                <ul class="space-y-1.5 text-white/70 text-xs">
+                                    <li>• Outcome-Driven Prioritization</li>
+                                    <li>• Agile Delivery  & Release Planning</li>
+                                    <li>• Stakeholder & Cross-Functional Leadership</li>
+                                </ul>
+                            </div>
+
+                            <!-- AI/Technical Fluency -->
+                            <div class="p-4 rounded-2xl glass-card">
+                                <h4 class="text-base font-semibold text-white mb-3">AI/Technical Fluency</h4>
+                                <ul class="space-y-1.5 text-white/70 text-xs">
+                                    <li>• AI/ML Product Strategy & Personalization</li>
+                                    <li>• System & API Literacy</li>
+                                    <li>• Data Pipeline Awareness</li>
+                                </ul>
+                            </div>
+
+                            <!-- ProdOps & Scaling -->
+                            <div class="p-4 rounded-2xl glass-card">
+                                <h4 class="text-base font-semibold text-white mb-3">Product Ops & Scaling</h4>
+                                <ul class="space-y-1.5 text-white/70 text-xs">
+                                    <li>• Product Operations</li>
+                                    <li>• GTM & launch</li>
+                                    <li>• Security, Compliance, & Cost Tradeoffs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="mb-8">
+                        <h3 class="responsive-heading-md font-semibold text-white mb-4 text-center">Tools & Technologies</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="skill-tag text-xs px-3 py-1.5">Confluence & Jira</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">SQL</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Mixpanel</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Google Analytics</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Amplitude</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Tableau</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Figma</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Miro</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Userflow</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Productboard</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Aha!</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Linear</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Asana</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Notion</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Postman</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">GitHub</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Claude Code</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">OpenAI API</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">Python</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">REST APIs</span>
+                            <span class="skill-tag text-xs px-3 py-1.5">A/B Testing</span>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div>
+                        <h3 class="responsive-heading-md font-semibold text-white mb-4 text-center">Certifications</h3>
+                        <div class="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                            <div class="p-4 rounded-xl glass-card text-left">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white mb-1">Certified Scrum Product Owner</div>
+                                        <div class="text-xs text-white/60">Scrum Alliance</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl glass-card text-left">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white mb-1">Certified Scrum Master</div>
+                                        <div class="text-xs text-white/60">Scrum Alliance</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl glass-card text-left">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white mb-1">Swift Level 1 & 2</div>
+                                        <div class="text-xs text-white/60">Cambridge Certification Authority</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl glass-card text-left">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white mb-1">Fundamentals of Predictive Project Management</div>
+                                        <div class="text-xs text-white/60">Project Management Institute</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Work Section -->
+    <div class="section" id="section-4">
+        <div class="flex h-full px-6 items-center justify-center">
+            <section class="max-w-5xl text-center w-full section-padding">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Featured <span class="italic" style="font-family: 'Playfair Display', serif;">Work</span>
+                    </h2>
+                    <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Enterprise products driven by user insight, measurable business outcomes, and AI innovation for the Fortune 1 company.
+                    </p>
+                </div>
+
+                <!-- Featured Case Study -->
+                <div class="grid lg:grid-cols-2 gap-8 items-center text-left mb-6">
+                    <!-- Case Study Image -->
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/10 bg-neutral-800">
+                            <div class="aspect-[4/3]">
+                                <img src="images/case-studies/UnifiedP&L.PNG" alt="IBG Financial Planning - Unified P&L Dashboard" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study Details -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">Product</span>
+                                <span class="px-2 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">New Case Study</span>
+                            </div>
+                            <div class="text-xs text-white/50 mb-1">Sam's Club (Walmart)</div>
+                            <h3 class="responsive-heading-md font-semibold text-white mb-3">Financial Forecasting & Planning Tool</h3>
+                            <p class="responsive-text-base text-white/70">
+                                Delivered an AI-powered forecasting platform that transformed planning and execution across Sam's Club. Enabled real-time P&L visibility, predictive insights, and faster strategic planning for finance leaders.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs font-medium">AI Product Strategy</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs font-medium">Outcome Driven</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs font-medium">Analytics</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs font-medium">Stakeholder Alignment</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                            <div>
+                                <div class="text-xl font-semibold tracking-tight text-white">+30%</div>
+                                <div class="text-xs mt-1 text-white/60">Forecast Accuracy</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-semibold tracking-tight text-white">60%</div>
+                                <div class="text-xs mt-1 text-white/60">Faster Planning</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-semibold tracking-tight text-white">1,800+</div>
+                                <div class="text-xs mt-1 text-white/60">Hours Saved/Year</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-6">
+                    <div class="relative inline-block group">
+                        <a href="work.html" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">View All Case Studies</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </a>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section" id="section-5">
+        <div class="h-full flex items-center justify-center px-6">
+            <section class="max-w-5xl text-center section-padding">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Let's Build Something <span class="italic" style="font-family: 'Playfair Display', serif;">Impactful Together</span>
+                    </h2>
+                    <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        I'm always interested in roles and projects where I can create measurable value — from defining strategy to delivering exceptional experiences. If you're looking for a product leader who can bridge user experience, business goals, and AI-driven innovation, let's connect and build something truly impactful.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
+                    <!-- Email -->
+                    <div class="text-white rounded-2xl p-4 glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/80 mb-3">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-10 5L2 7"></path>
+                        </svg>
+                        <div class="text-base font-medium mb-1 text-white">Email</div>
+                        <a href="mailto:petersen.brandon@protonmail.com" class="text-sm text-white/70 hover:text-white transition-colors">petersen.brandon@protonmail.com</a>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="text-white rounded-2xl p-4 glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/80 mb-3">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <div class="text-base font-medium mb-1 text-white">LinkedIn</div>
+                        <a href="https://www.linkedin.com/in/bdpetersen13" target="_blank" class="text-sm text-white/70 hover:text-white transition-colors">Connect with me</a>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="text-white rounded-2xl p-4 glass-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/80 mb-3">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div class="text-base font-medium mb-1 text-white">Location</div>
+                        <div class="text-sm text-white/70">Bentonville, Arkansas</div>
+                        <div class="text-sm text-white/70">Open to Relocating & Remote Work</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <div class="relative inline-block group">
+                        <a href="mailto:petersen.brandon@protonmail.com" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Get In Touch</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </a>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bdpetersen13" target="_blank" class="inline-flex items-center justify-center gap-2 min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] backdrop-blur font-geist relative" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:transparent;">
+                        <span class="z-10 relative">View Full Portfolio</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Portfolio JavaScript Bundle -->
+    <script>
+        // Configuration for this page
+        window.portfolioConfig = {
+            totalSections: 6,
+            enableGreeting: true
+        };
+    </script>
+    <script src="js/portfolio-bundle.js"></script>
+
+</body>
+</html>

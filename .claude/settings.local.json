@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Bash(awk:*)",
+      "Bash(identify:*)",
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

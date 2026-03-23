@@ -1,0 +1,38 @@
+/**
+ * Custom Cursor Styles
+ * Magnetic snap cursor with smooth animations
+ */
+
+/* Custom circular cursor */
+#custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+#custom-cursor.hover {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Light mode cursor adjustments */
+body.light-mode #custom-cursor {
+  background: rgba(0, 0, 0, 0.8);
+  mix-blend-mode: normal;
+}
+
+body.light-mode #custom-cursor.hover {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}

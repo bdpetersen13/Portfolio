@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon Petersen - Work & Case Studies</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Modular CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/theme.css">
+
+</head>
+<body class="bg-black font-inter">
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Background Image -->
+    <div class="fixed top-0 w-full -z-10 h-screen bg-cover bg-center brightness-50" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);"></div>
+
+    <!-- Touch zones for mobile interaction -->
+    <div class="touch-zone-next" id="touch-next"></div>
+    <div class="touch-zone-prev" id="touch-prev"></div>
+
+    <!-- Fixed Navigation -->
+    <div id="navbar" class="fixed z-50 bg-transparent pt-6 pr-6 pb-6 pl-6 top-0 right-0 left-0 transition-transform duration-300 ease-in-out">
+        <div class="max-w-5xl border-white/20 border rounded-full mr-auto ml-auto pt-3 pr-6 pb-3 pl-6" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="cursor-pointer text-lg font-semibold text-white tracking-tight font-geist" role="button">Brandon Petersen</a>
+                </div>
+                <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
+                    <li><a href="index.html" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">About</a></li>
+                    <li><a href="work.html" class="nav-link cursor-pointer text-white bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Work</a></li>
+                    <li><a href="index.html#contact" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Contact</a></li>
+                </ul>
+                <div class="flex gap-2 items-center">
+                    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <div class="relative inline-block group">
+                        <button class="group inline-flex min-w-[120px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-sm font-normal text-white/70 tracking-tight font-geist rounded-full pt-[12px] pr-[17px] pb-[12px] pl-[17px] relative items-center justify-center" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Download Resume</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </button>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dot Navigation -->
+    <div class="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+        <div class="dot active" onclick="goToSection(0)" data-section="0"></div>
+        <div class="dot" onclick="goToSection(1)" data-section="1"></div>
+        <div class="dot" onclick="goToSection(2)" data-section="2"></div>
+        <div class="dot" onclick="goToSection(3)" data-section="3"></div>
+        <div class="dot" onclick="goToSection(4)" data-section="4"></div>
+    </div>
+
+    <!-- Section 0: Hero/Overview -->
+    <div class="section active" id="section-0">
+        <div class="flex h-full pr-6 pl-6 items-center justify-center">
+            <section class="relative z-10 max-w-5xl text-center section-padding">
+                <div class="mb-6">
+                    <h2 class="responsive-heading-xl font-light text-white/95 font-geist text-center tracking-tight mb-6">
+                        Work
+                    </h2>
+                </div>
+
+                <h1 class="responsive-heading-lg tracking-tight font-geist max-w-5xl mx-auto text-white mb-5">
+                    Building <span class="italic text-white tracking-tight" style="font-family: 'Playfair Display', serif;">products</span> that drive impact
+                </h1>
+
+                <p class="responsive-text-lg font-normal text-white/80 font-geist max-w-3xl mx-auto mb-8">
+                    From AI-powered analytics to seamless omni-commerce experiences, I've led products that deliver measurable business value and exceptional user experiences across the Fortune 1 company.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 max-w-4xl mx-auto">
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        6 Featured Projects
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        Enterprise Scale
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        AI & Data Driven
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Section 1: Sam's Club Curbside Personalization (Detailed) -->
+    <div class="section" id="section-1">
+        <div class="h-full px-6 flex items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                    <div class="mb-6 text-center">
+                        <div class="text-xs text-white/50 mb-2 font-geist">Sam's Club (Walmart)</div>
+                        <h2 class="responsive-heading-md tracking-tight font-geist text-white mb-3">
+                            Curbside Personalization
+                        </h2>
+                        <p class="responsive-text-base font-normal text-white/80 font-geist max-w-3xl mx-auto">
+                            Led personalization efforts for Sam's Club's curbside pickup experience — integrating member data and AI-driven recommendations to create a more tailored, seamless, and engaging pickup journey.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8 items-start mb-6">
+                        <!-- Image -->
+                        <div>
+                            <div class="relative rounded-2xl overflow-hidden">
+                                <img src="images/case-studies/Sam's_Curbside.png" alt="Sam's Club Curbside Personalization" class="w-full h-auto object-cover">
+                                <div class="bg-gradient-to-t from-black/40 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="space-y-4">
+                            <div class="grid md:grid-cols-1 gap-4">
+                        <!-- Challenge -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Challenge</h3>
+                            <p class="text-white/70 text-sm">Generic curbside experience lacked personalization, leading to limited member engagement and missed opportunities for relevant product recommendations during pickup.</p>
+                        </div>
+
+                        <!-- Solution -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Solution</h3>
+                            <p class="text-white/70 text-sm">Built an AI-powered personalization engine using member purchase history to deliver context-aware recommendations during pickup, seamlessly integrated with existing curbside operations.</p>
+                        </div>
+
+                        <!-- Impact -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Impact</h3>
+                            <p class="text-white/70 text-sm"><span class="text-white font-semibold">+10pts NPS</span> improvement, <span class="text-white font-semibold">-5+ min</span> perceived wait time, and <span class="text-white font-semibold">-15%</span> contact rate for order issues.</p>
+                        </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Product Strategy</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Personalization</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Member Experience</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">AI Integration</span>
+                            </div>
+
+                            <div class="flex justify-center lg:justify-start">
+                                <div class="relative inline-block group">
+                                    <a href="curbside_case_study.html" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                                        <span class="z-10 relative">View Full Case Study</span>
+                                        <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                                    </a>
+                                    <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Sam's Club IBG Financial Forecasting (Detailed) -->
+    <div class="section" id="section-2">
+        <div class="h-full px-6 flex items-center justify-center">
+            <section class="max-w-6xl w-full section-padding">
+                    <div class="mb-6 text-center">
+                        <div class="text-xs text-white/50 mb-2 font-geist">Sam's Club (Walmart)</div>
+                        <h2 class="responsive-heading-md tracking-tight font-geist text-white mb-3">
+                            Financial Forecasting & Planning Tool
+                        </h2>
+                        <p class="responsive-text-base font-normal text-white/80 font-geist max-w-3xl mx-auto">
+                            Delivered an AI-powered forecasting platform that transformed planning and execution across Sam's Club. Enabled real-time P&L visibility, predictive insights, and faster strategic planning for finance leaders.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8 items-start mb-6">
+                        <!-- Image -->
+                        <div>
+                            <div class="relative rounded-2xl overflow-hidden">
+                                <img src="images/case-studies/Sam's_Club.jpg" alt="Sam's Club Financial Forecasting" class="w-full h-auto object-cover">
+                                <div class="bg-gradient-to-t from-black/40 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="space-y-4">
+                            <div class="grid md:grid-cols-1 gap-4">
+                        <!-- Challenge -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Challenge</h3>
+                            <p class="text-white/70 text-sm">Manual forecasting processes took weeks to complete, with limited visibility into real-time financial performance and siloed data across departments hindering strategic planning.</p>
+                        </div>
+
+                        <!-- Solution -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Solution</h3>
+                            <p class="text-white/70 text-sm">Developed an AI-driven forecasting engine with predictive analytics, featuring a real-time P&L dashboard with automated data integration and cross-functional planning tools for finance leadership.</p>
+                        </div>
+
+                        <!-- Impact -->
+                        <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Impact</h3>
+                            <p class="text-white/70 text-sm"><span class="text-white font-semibold">+30%</span> forecast accuracy, <span class="text-white font-semibold">60% faster</span> planning speed, and <span class="text-white font-semibold">1,800+ hrs/year</span> time saved.</p>
+                        </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">AI Product Strategy</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Outcome Driven</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Analytics</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Stakeholder Alignment</span>
+                            </div>
+
+                            <div class="flex justify-center lg:justify-start">
+                                <div class="relative inline-block group">
+                                    <a href="IBG_Case_Study.html" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                                        <span class="z-10 relative">View Full Case Study</span>
+                                        <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                                    </a>
+                                    <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: More Work Grid -->
+    <div class="section" id="section-3">
+        <div class="h-full px-6">
+            <div class="flex items-center justify-center section-padding">
+                <section class="max-w-6xl text-center w-full">
+                    <div class="mb-8">
+                        <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                            More <span class="italic" style="font-family: 'Playfair Display', serif;">Work</span>
+                        </h2>
+                        <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                            Additional projects spanning retail innovation, sports technology, healthcare platforms, and payment systems.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                        <!-- Sam's Club HOPE Internship -->
+                        <div class="project-card p-6" onclick="window.location.href='#'">
+                            <div class="status-badges">
+                                <div class="status-badge project">Project</div>
+                                <div class="status-badge coming-soon">Coming Soon</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm text-white/50 mb-2">Sam's Club (Walmart)</div>
+                                <h3 class="text-2xl font-semibold text-white mb-3">Optimizing Weight Logic for Automated Packing Systems</h3>
+                                <p class="text-white/70 text-base mb-4 leading-relaxed">
+                                    As a Product Manager Intern, I led efforts to enhance weight calculation logic in eGLS (legacy WMS) for Packsize-generated boxes, leading to improvements in fulfillment accuracy, reduced shipping costs, and optimized downstream operations.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Supply Chain Systems</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Automation</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Ops Efficiency</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Data Validation</span>
+                            </div>
+                            <div class="border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-sm">
+                                <span class="text-white/60">Weight Calculation Accuracy</span>
+                                <span class="text-white font-semibold">+15%</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-white/60">Manual Verification Time</span>
+                                <span class="text-white font-semibold">-20%</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-white/60">Reduced Freight Cost</span>
+                                <span class="text-white font-semibold">-8%</span>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Dallas Mavericks -->
+                        <div class="project-card p-6" onclick="window.location.href='#'">
+                            <div class="status-badges">
+                                <div class="status-badge project">Project</div>
+                                <div class="status-badge coming-soon">Coming Soon</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="text-sm text-white/50 mb-2">Dallas Mavericks</div>
+                                <h3 class="text-2xl font-semibold text-white mb-3">Digital Ticketing Experience</h3>
+                                <p class="text-white/70 text-base mb-4 leading-relaxed">
+                                    Led mobile app design and development for seamless digital ticketing at American Airlines Center, enhancing fan experience from purchase to entry.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Mobile Design</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">iOS</span>
+                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Android</span>
+                            </div>
+                            <div class="border-t border-white/10 pt-4">
+                                <div class="text-sm text-white/60">Role: Lead Designer & Developer</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Call to Action -->
+    <div class="section" id="section-4">
+        <div class="h-full flex items-center justify-center px-6">
+            <section class="max-w-5xl text-center section-padding">
+                <div class="mb-8">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
+                        Let's Create <span class="italic" style="font-family: 'Playfair Display', serif;">Impact Together</span>
+                    </h2>
+                    <p class="responsive-text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Interested in learning more about these projects or discussing how we can work together? I'd love to connect and explore opportunities to create meaningful product experiences.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3 mb-8">
+                    <div class="relative inline-block group">
+                        <a href="index.html#contact" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                            <span class="z-10 relative">Get In Touch</span>
+                            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
+                        </a>
+                        <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(255,255,255,.55), rgba(255,255,255,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+                    </div>
+                    <a href="index.html" class="inline-flex items-center justify-center gap-2 min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] backdrop-blur font-geist relative" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:transparent;">
+                        <span class="z-10 relative">Back to Home</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 max-w-4xl mx-auto">
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        Product Management
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        AI & ML Products
+                    </div>
+                    <div class="px-6 py-3 rounded-full text-white/90 text-sm font-medium" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        User Experience
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Portfolio JavaScript Bundle -->
+    <script>
+        // Configuration for this page
+        window.portfolioConfig = {
+            totalSections: 5,
+            enableGreeting: false
+        };
+    </script>
+    <script src="js/portfolio-bundle.js"></script>
+
+</body>
+</html>
