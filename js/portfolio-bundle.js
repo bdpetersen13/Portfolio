@@ -322,9 +322,7 @@ class ThemeManager {
   }
 
   init() {
-    window.addEventListener('DOMContentLoaded', () => {
-      this.loadTheme();
-    });
+    this.loadTheme();
     window.toggleTheme = () => this.toggle();
   }
 
@@ -347,16 +345,16 @@ class ThemeManager {
     if (theme === THEMES.LIGHT) {
       this.sunIcon.style.display = 'none';
       this.moonIcon.style.display = 'block';
-      sessionStorage.setItem(THEME_STORAGE_KEY, THEMES.LIGHT);
+      localStorage.setItem(THEME_STORAGE_KEY, THEMES.LIGHT);
     } else {
       this.sunIcon.style.display = 'block';
       this.moonIcon.style.display = 'none';
-      sessionStorage.setItem(THEME_STORAGE_KEY, THEMES.DARK);
+      localStorage.setItem(THEME_STORAGE_KEY, THEMES.DARK);
     }
   }
 
   loadTheme() {
-    const savedTheme = sessionStorage.getItem(THEME_STORAGE_KEY);
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 
     if (savedTheme === THEMES.LIGHT) {
       this.body.classList.add('light-mode');
@@ -489,6 +487,16 @@ function initPortfolio(config = {}) {
   let greeting = null;
   if (enableGreeting) {
     greeting = new GreetingRotator('greeting');
+  }
+
+  // Navigate to target section if arriving via cross-page link (e.g. About, Contact from other pages)
+  const targetSection = sessionStorage.getItem('targetSection');
+  if (targetSection !== null) {
+    sessionStorage.removeItem('targetSection');
+    const sectionIndex = parseInt(targetSection, 10);
+    if (!isNaN(sectionIndex) && sectionIndex > 0) {
+      setTimeout(() => navigation.goToSection(sectionIndex, true), 100);
+    }
   }
 
   return { cursor, navigation, theme, navbar, greeting };

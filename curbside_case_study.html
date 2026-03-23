@@ -325,9 +325,9 @@
                 </div>
                 <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white/60">
                     <li><a href="index.html" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Home</a></li>
-                    <li><a href="index.html#about" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">About</a></li>
+                    <li><a href="index.html" onclick="sessionStorage.setItem('targetSection','1')" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">About</a></li>
                     <li><a href="work.html" class="nav-link cursor-pointer text-white bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Work</a></li>
-                    <li><a href="index.html#contact" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Contact</a></li>
+                    <li><a href="index.html" onclick="sessionStorage.setItem('targetSection','5')" class="nav-link cursor-pointer hover:text-white transition-colors duration-300 hover:bg-white/10 rounded-full pt-2 pr-4 pb-2 pl-4">Contact</a></li>
                 </ul>
                 <div class="flex gap-2 items-center">
                     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -1012,7 +1012,7 @@
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
                     <div class="relative inline-block group">
-                        <a href="index.html#contact" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
+                        <a href="index.html" onclick="sessionStorage.setItem('targetSection','5')" class="group inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] hover:scale-[1.05] hover:text-white text-base font-normal text-white/70 tracking-tight rounded-full pt-[14px] pr-[20px] pb-[14px] pl-[20px] relative items-center justify-center font-geist" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1);background:radial-gradient(ellipse at bottom,rgba(55,55,55,1) 0%,rgba(0,0,0,1) 100%);">
                             <span class="z-10 relative">Discuss This Project</span>
                             <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 opacity-20 transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] group-hover:opacity-80" style="background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);"></span>
                         </a>
