@@ -63,11 +63,15 @@ class CustomCursor {
     this.mouseY = 0;
     this.cursorX = 0;
     this.cursorY = 0;
+    this.hasInitialized = false;
 
     this.snapDistance = options.snapDistance || CURSOR.SNAP_DISTANCE;
     this.snapStrength = options.snapStrength || CURSOR.SNAP_STRENGTH;
     this.easing = options.easing || CURSOR.EASING;
     this.directOverDistance = options.directOverDistance || CURSOR.DIRECT_OVER_DISTANCE;
+
+    // Hide until we know where the mouse actually is
+    this.cursorEl.style.opacity = '0';
 
     this.init();
   }
@@ -83,6 +87,13 @@ class CustomCursor {
   }
 
   handleMouseMove(e) {
+    if (!this.hasInitialized) {
+      // Snap to real position on first move — no slide from (0,0)
+      this.cursorX = e.clientX;
+      this.cursorY = e.clientY;
+      this.hasInitialized = true;
+      this.cursorEl.style.opacity = '1';
+    }
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   }
@@ -92,7 +103,10 @@ class CustomCursor {
   }
 
   handleMouseEnter() {
-    this.cursorEl.style.opacity = '1';
+    // Only show if we've already placed it at the real position
+    if (this.hasInitialized) {
+      this.cursorEl.style.opacity = '1';
+    }
   }
 
   findMagneticTarget() {
