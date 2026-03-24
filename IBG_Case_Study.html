@@ -133,65 +133,61 @@
                     </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                    <!-- Left Column -->
-                    <div class="flex flex-col gap-4">
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">My Role</h3>
-                            <p class="text-white/70 leading-relaxed">Product Manager</p>
-                            <p class="text-white/70 leading-relaxed mt-2">Product Strategy, Roadmap Planning, Cross-functional Leadership</p>
-                        </div>
-
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Timeline</h3>
-                            <p class="text-white/70 leading-relaxed">12 months (2024-2025)</p>
-                            <p class="text-white/70 leading-relaxed mt-2">Discovery, MVP Build, Phased Rollout, Scale</p>
-                        </div>
-
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Team</h3>
-                            <p class="text-white/70 leading-relaxed">Cross-functional team of 28</p>
-                            <p class="text-white/70 leading-relaxed mt-2">Product, Engineering, Data Science, Design, Finance</p>
+                <div class="grid md:grid-cols-2 gap-4 mb-4" style="grid-template-rows: repeat(3, 1fr); height: calc(100vh - 15rem);">
+                    <!-- Row 1: My Role | Tools & Technologies -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">My Role</h3>
+                        <p class="text-white/70 leading-relaxed">Product Manager</p>
+                        <p class="text-white/70 leading-relaxed mt-2">Product Strategy, Roadmap Planning, Cross-functional Leadership</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Tools & Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Jira</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Productboard</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Mixpanel</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">SQL</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Gen AI/ML</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Python</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Figma</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Confluence</span>
                         </div>
                     </div>
 
-                    <!-- Right Column -->
-                    <div class="flex flex-col gap-4">
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Tools & Technologies</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Jira</span>
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Productboard</span>
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Mixpanel</span>
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">SQL</span>
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Gen AI/ML</span>
-                                <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Python</span>
+                    <!-- Row 2: Timeline | Key Metrics -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Timeline</h3>
+                        <p class="text-white/70 leading-relaxed">12 months (2024–2025)</p>
+                        <p class="text-white/70 leading-relaxed mt-2">Discovery → MVP Build → Phased Rollout → Scale</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Key Metrics</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-white/70">Active Users</span>
+                                <span class="text-white font-semibold">139+</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/70">Organization Adoption</span>
+                                <span class="text-white font-semibold">100%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/70">Time Saved Annually</span>
+                                <span class="text-white font-semibold">1,800+ hrs</span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Key Metrics</h3>
-                            <div class="space-y-3">
-                                <div class="flex justify-between">
-                                    <span class="text-white/70">Active Users</span>
-                                    <span class="text-white font-semibold">139+</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-white/70">Organization Adoption</span>
-                                    <span class="text-white font-semibold">100%</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-white/70">Time Saved Annually</span>
-                                    <span class="text-white font-semibold">1,800+ hrs</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl flex-1" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Platform</h3>
-                            <p class="text-white/70 leading-relaxed">Enterprise Web Application</p>
-                            <p class="text-white/70 leading-relaxed mt-2">Real-time Financial Planning & Analysis</p>
-                        </div>
+                    <!-- Row 3: Team | Platform -->
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Team</h3>
+                        <p class="text-white/70 leading-relaxed">Cross-functional team of 28</p>
+                        <p class="text-white/70 leading-relaxed mt-2">Product, Engineering, Data Science, UX, Finance</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
+                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Platform</h3>
+                        <p class="text-white/70 leading-relaxed">Enterprise Web Application</p>
+                        <p class="text-white/70 leading-relaxed mt-2">Real-time Financial Planning & Analysis</p>
                     </div>
                 </div>
             </section>
@@ -201,9 +197,9 @@
     <!-- Section 2: Problem -->
     <div class="section" id="section-2">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
-            <section class="max-w-6xl w-full section-padding-extra">
-                <div class="text-center mb-6">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
+            <section class="max-w-6xl w-full section-padding">
+                <div class="text-center mb-4">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
                         The <span class="italic" style="font-family: 'Playfair Display', serif;">Problem</span>
                     </h2>
                     <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
@@ -220,17 +216,17 @@
                     <!-- Stats -->
                     <div class="grid grid-cols-1 gap-4">
                         <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <div class="responsive-heading-md font-bold text-white mb-2">1,800+</div>
+                            <div class="text-3xl font-bold text-white mb-2">1,800+</div>
                             <div class="text-white/70 leading-relaxed text-sm">Hours wasted annually in Excel and fragmented BI tools</div>
                         </div>
 
                         <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <div class="responsive-heading-md font-bold text-white mb-2">12+</div>
+                            <div class="text-3xl font-bold text-white mb-2">12+</div>
                             <div class="text-white/70 leading-relaxed text-sm">Different systems with siloed, inconsistent data</div>
                         </div>
 
                         <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <div class="responsive-heading-md font-bold text-white mb-2">0</div>
+                            <div class="text-3xl font-bold text-white mb-2">0</div>
                             <div class="text-white/70 leading-relaxed text-sm">Real-time visibility into financial performance</div>
                         </div>
                     </div>
@@ -426,7 +422,7 @@
                     <!-- Feature 1 -->
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
                         <div class="overflow-hidden">
-                            <img src="images/case-studies/UnifiedP&L.PNG" loading="lazy" alt="Unified P&L Dashboard" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                            <img src="images/case-studies/UnifiedP&L.PNG" loading="lazy" alt="Unified P&L Dashboard" class="w-full h-auto object-cover" style="max-height: clamp(160px, 25vh, 280px);">
                         </div>
                         <div class="p-3">
                             <h3 class="text-base font-semibold text-white mb-1 font-geist">Unified P&L Dashboard</h3>
@@ -437,7 +433,7 @@
                     <!-- Feature 2 -->
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
                         <div class="overflow-hidden">
-                            <img src="images/case-studies/AI-Powered.PNG" alt="AI-Powered Forecasting" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(220px, 33vh, 340px);">
+                            <img src="images/case-studies/AI-Powered.PNG" alt="AI-Powered Forecasting" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
                         </div>
                         <div class="p-3">
                             <h3 class="text-base font-semibold text-white mb-1 font-geist">AI-Powered Forecasting</h3>
@@ -448,7 +444,7 @@
                     <!-- Feature 3 -->
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
                         <div class="overflow-hidden">
-                            <img src="images/case-studies/ScenarioPlanning.PNG" alt="Scenario Planning" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(220px, 33vh, 340px);">
+                            <img src="images/case-studies/ScenarioPlanning.PNG" alt="Scenario Planning" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
                         </div>
                         <div class="p-3">
                             <h3 class="text-base font-semibold text-white mb-1 font-geist">Scenario Planning</h3>
@@ -459,7 +455,7 @@
                     <!-- Feature 4 -->
                     <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
                         <div class="overflow-hidden">
-                            <img src="images/case-studies/Collaborative.PNG" alt="Collaborative Workflows" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(220px, 33vh, 340px);">
+                            <img src="images/case-studies/Collaborative.PNG" alt="Collaborative Workflows" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
                         </div>
                         <div class="p-3">
                             <h3 class="text-base font-semibold text-white mb-1 font-geist">Collaborative Workflows</h3>
@@ -486,7 +482,7 @@
 
                 <!-- Impact & Results Image -->
                 <div class="rounded-2xl overflow-hidden mb-3">
-                    <img src="images/case-studies/Impact&Results.PNG" loading="lazy" alt="Impact & Results - Measurable outcomes" class="w-full h-auto object-cover" style="max-height: clamp(220px, 33vh, 340px);">
+                    <img src="images/case-studies/Impact&Results.PNG" loading="lazy" alt="Impact & Results - Measurable outcomes" class="w-full h-auto object-cover" style="max-height: clamp(160px, 25vh, 280px);">
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-3 mb-3">

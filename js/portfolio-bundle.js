@@ -419,16 +419,20 @@ class NavbarManager {
     if (e.clientY < NAVBAR.SHOW_THRESHOLD) {
       this.show();
     } else if (e.clientY > NAVBAR.HIDE_THRESHOLD && !this.navbarHidden) {
-      clearTimeout(this.hideTimeout);
-      this.hideTimeout = setTimeout(() => {
-        if (this.lastMouseY > NAVBAR.HIDE_THRESHOLD) {
-          this.hide();
-        }
-      }, TIMING.NAVBAR_HIDE_DELAY);
+      if (!this.hideTimeout) {
+        this.hideTimeout = setTimeout(() => {
+          this.hideTimeout = null;
+          if (this.lastMouseY > NAVBAR.HIDE_THRESHOLD) {
+            this.hide();
+          }
+        }, TIMING.NAVBAR_HIDE_DELAY);
+      }
     }
   }
 
   show() {
+    clearTimeout(this.hideTimeout);
+    this.hideTimeout = null;
     this.navbar.style.transform = 'translateY(0)';
     this.navbarHidden = false;
   }
