@@ -23,8 +23,8 @@ Each page uses full-page section-snap navigation. The section count must match t
 |------|----------|
 | `index.html` | 6 |
 | `work.html` | 5 |
-| `IBG_Case_Study.html` | 10 |
-| `curbside_case_study.html` | 13 |
+| `IBG_Case_Study.html` | 8 |
+| `curbside_case_study.html` | 11 |
 
 ### JavaScript
 

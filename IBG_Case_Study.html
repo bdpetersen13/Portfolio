@@ -89,8 +89,6 @@
         <div class="dot" onclick="goToSection(5)" data-section="5"></div>
         <div class="dot" onclick="goToSection(6)" data-section="6"></div>
         <div class="dot" onclick="goToSection(7)" data-section="7"></div>
-        <div class="dot" onclick="goToSection(8)" data-section="8"></div>
-        <div class="dot" onclick="goToSection(9)" data-section="9"></div>
     </div>
 
     <!-- Section 0: Hero -->
@@ -123,84 +121,62 @@
         </div>
     </div>
 
-    <!-- Section 1: Project Overview -->
+    <!-- Section 1: At-a-Glance -->
     <div class="section" id="section-1">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full section-padding">
-                <div class="text-center mb-6">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
-                        Project <span class="italic" style="font-family: 'Playfair Display', serif;">Overview</span>
+                <div class="text-center mb-5">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
+                        At a <span class="italic" style="font-family: 'Playfair Display', serif;">Glance</span>
                     </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4 mb-4" style="grid-template-rows: repeat(3, 1fr); height: calc(100vh - 15rem);">
-                    <!-- Row 1: My Role | Tools & Technologies -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">My Role</h3>
-                        <p class="text-white/70 leading-relaxed">Product Manager</p>
-                        <p class="text-white/70 leading-relaxed mt-2">Product Strategy, Roadmap Planning, Cross-functional Leadership</p>
-                    </div>
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Tools & Technologies</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Jira</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Productboard</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Mixpanel</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">SQL</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Gen AI/ML</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Python</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Figma</span>
-                            <span class="px-3 py-1 bg-white/10 text-white/80 rounded-full text-xs">Confluence</span>
-                        </div>
-                    </div>
+                <!-- Metadata strip -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                    <span class="px-4 py-2 rounded-full text-white/70 text-sm font-medium font-geist" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
+                        <span class="text-white/40 text-xs uppercase tracking-wider mr-2">Role</span>Product Manager II
+                    </span>
+                    <span class="px-4 py-2 rounded-full text-white/70 text-sm font-medium font-geist" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
+                        <span class="text-white/40 text-xs uppercase tracking-wider mr-2">Team</span>28 cross-functional
+                    </span>
+                    <span class="px-4 py-2 rounded-full text-white/70 text-sm font-medium font-geist" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
+                        <span class="text-white/40 text-xs uppercase tracking-wider mr-2">Timeline</span>12 months (2024–2025)
+                    </span>
+                    <span class="px-4 py-2 rounded-full text-white/70 text-sm font-medium font-geist" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
+                        <span class="text-white/40 text-xs uppercase tracking-wider mr-2">Platform</span>Enterprise Web App
+                    </span>
+                </div>
 
-                    <!-- Row 2: Timeline | Key Metrics -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Timeline</h3>
-                        <p class="text-white/70 leading-relaxed">12 months (2024–2025)</p>
-                        <p class="text-white/70 leading-relaxed mt-2">Discovery → MVP Build → Phased Rollout → Scale</p>
+                <!-- 2x2 narrative grid -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-xs uppercase tracking-wider text-white/40 mb-2 font-geist">Problem</div>
+                        <p class="text-white/80 leading-relaxed text-sm">Finance teams at Sam's Club spent 1,800+ hours a year manually pulling data from 12+ siloed systems — and executive decisions still lagged 2–3 weeks behind reality.</p>
                     </div>
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Key Metrics</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-white/70">Active Users</span>
-                                <span class="text-white font-semibold">139+</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-white/70">Organization Adoption</span>
-                                <span class="text-white font-semibold">100%</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-white/70">Time Saved Annually</span>
-                                <span class="text-white font-semibold">1,800+ hrs</span>
-                            </div>
-                        </div>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-xs uppercase tracking-wider text-white/40 mb-2 font-geist">Why It Mattered</div>
+                        <p class="text-white/80 leading-relaxed text-sm">Strategic decisions on stale data meant missed opportunities and reactive planning at scale — across a $1B+ annual planning footprint and 600+ club locations.</p>
                     </div>
-
-                    <!-- Row 3: Team | Platform -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Team</h3>
-                        <p class="text-white/70 leading-relaxed">Cross-functional team of 28</p>
-                        <p class="text-white/70 leading-relaxed mt-2">Product, Engineering, Data Science, UX, Finance</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-xs uppercase tracking-wider text-white/40 mb-2 font-geist">What Shipped</div>
+                        <p class="text-white/80 leading-relaxed text-sm">A unified AI-powered financial planning platform: real-time P&L visibility, ML forecasting, and scenario modeling — all in one place, built in 12 months.</p>
                     </div>
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-4 font-geist">Platform</h3>
-                        <p class="text-white/70 leading-relaxed">Enterprise Web Application</p>
-                        <p class="text-white/70 leading-relaxed mt-2">Real-time Financial Planning & Analysis</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-xs uppercase tracking-wider text-white/40 mb-2 font-geist">Impact</div>
+                        <p class="text-white/80 leading-relaxed text-sm">100% org adoption in 6 months. +30% forecast accuracy. 1,800+ hours saved annually. $2.4M+ in value delivered. Platform now influences $1B+ in planning decisions.</p>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 2: Problem -->
+    <!-- Section 2: The Stakes -->
     <div class="section" id="section-2">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full section-padding">
                 <div class="text-center mb-4">
                     <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
-                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Problem</span>
+                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Stakes</span>
                     </h2>
                     <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
                         Critical business decisions delayed by weeks due to manual processes and data fragmentation
@@ -219,25 +195,23 @@
                             <div class="text-3xl font-bold text-white mb-2">1,800+</div>
                             <div class="text-white/70 leading-relaxed text-sm">Hours wasted annually in Excel and fragmented BI tools</div>
                         </div>
-
                         <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
                             <div class="text-3xl font-bold text-white mb-2">12+</div>
                             <div class="text-white/70 leading-relaxed text-sm">Different systems with siloed, inconsistent data</div>
                         </div>
-
                         <div class="p-4 rounded-2xl text-center" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <div class="text-3xl font-bold text-white mb-2">0</div>
-                            <div class="text-white/70 leading-relaxed text-sm">Real-time visibility into financial performance</div>
+                            <div class="text-3xl font-bold text-white mb-2">2–3 wks</div>
+                            <div class="text-white/70 leading-relaxed text-sm">Lag before financial data reached executive decision-makers</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                    <h3 class="text-base font-semibold text-white mb-3 font-geist text-center">Core Challenges</h3>
+                    <h3 class="text-base font-semibold text-white mb-3 font-geist text-center">Business Challenges</h3>
                     <div class="grid md:grid-cols-2 gap-3">
                         <div>
                             <h4 class="text-white font-semibold mb-1 text-sm">Strategic Paralysis</h4>
-                            <p class="text-white/70 text-xs leading-relaxed">Executive decision-making delayed 2-3 weeks waiting for financial consolidation, causing missed market opportunities and reactive business moves.</p>
+                            <p class="text-white/70 text-xs leading-relaxed">Executive decision-making delayed 2–3 weeks waiting for financial consolidation, causing missed market opportunities and reactive business moves.</p>
                         </div>
                         <div>
                             <h4 class="text-white font-semibold mb-1 text-sm">Data Fragmentation Risk</h4>
@@ -257,406 +231,249 @@
         </div>
     </div>
 
-    <!-- Section 3: Solution -->
+    <!-- Section 3: Strategic Response -->
     <div class="section" id="section-3">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full section-padding">
-                <div class="text-center mb-6">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
-                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Solution</span>
+                <div class="text-center mb-5">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
+                        Strategic <span class="italic" style="font-family: 'Playfair Display', serif;">Response</span>
                     </h2>
                     <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Strategic product vision built on three value pillars driving measurable business outcomes
+                        Three pillars. Two flagship features. One platform.
                     </p>
                 </div>
 
-                <!-- Solution Image -->
-                <div class="rounded-2xl overflow-hidden mb-4">
-                    <img src="images/case-studies/TheSolution.PNG" alt="The Solution - Three core pillars" class="w-full h-auto object-cover responsive-image" loading="lazy">
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-4">
-                    <!-- Pillar 1 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-300">
+                <!-- Three pillars -->
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="w-10 h-10 rounded-full mb-3 flex items-center justify-center" style="background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-300">
                                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
                             </svg>
                         </div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Data Unification Strategy</h3>
-                        <p class="text-white/70 leading-relaxed mb-4">Product strategy to consolidate 12+ systems, eliminating data silos and establishing single source of truth for executive decision-making</p>
-                        <ul class="space-y-2 text-sm text-white/60">
-                            <li>• Real-time data pipeline architecture</li>
-                            <li>• Automated validation reducing errors 95%</li>
-                            <li>• Executive P&L dashboard enabling daily insights</li>
-                        </ul>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Data Unification</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">Consolidated 12+ systems into a single source of truth. Real-time pipeline with automated validation eliminated 95% of data errors.</p>
                     </div>
-
-                    <!-- Pillar 2 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.3);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-300">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="9" y1="9" x2="15" y2="15"></line>
-                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="w-10 h-10 rounded-full mb-3 flex items-center justify-center" style="background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-300">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                             </svg>
                         </div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">AI-Driven Automation</h3>
-                        <p class="text-white/70 leading-relaxed mb-4">ML product capabilities delivering 1,800+ hours annual efficiency gains and 30% forecast accuracy improvement through intelligent automation</p>
-                        <ul class="space-y-2 text-sm text-white/60">
-                            <li>• Predictive forecasting models (ML/AI)</li>
-                            <li>• Automated scenario planning workflows</li>
-                            <li>• Intelligent anomaly alerts reducing manual review 80%</li>
-                        </ul>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">AI-Driven Automation</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">ML forecasting delivering +30% accuracy and 1,800+ hours/year saved. Intelligent anomaly detection reduced manual review by 80%.</p>
                     </div>
-
-                    <!-- Pillar 3 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center" style="background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.3);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="w-10 h-10 rounded-full mb-3 flex items-center justify-center" style="background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
                                 <line x1="12" y1="20" x2="12" y2="10"></line>
                                 <line x1="18" y1="20" x2="18" y2="4"></line>
                                 <line x1="6" y1="20" x2="6" y2="16"></line>
                             </svg>
                         </div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Strategic Velocity</h3>
-                        <p class="text-white/70 leading-relaxed mb-4">Product features accelerating executive decision-making from weeks to days, enabling proactive strategy vs reactive firefighting</p>
-                        <ul class="space-y-2 text-sm text-white/60">
-                            <li>• Real-time executive KPI dashboards</li>
-                            <li>• What-if scenario modeling for strategic planning</li>
-                            <li>• Cross-functional collaboration workflows</li>
-                        </ul>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Strategic Velocity</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">Decision time cut from weeks to days. What-if scenario modeling and real-time KPI dashboards enabled proactive strategy at the executive level.</p>
+                    </div>
+                </div>
+
+                <!-- Two flagship features -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="overflow-hidden">
+                            <img src="images/case-studies/UnifiedP&L.PNG" loading="lazy" alt="Unified P&L Dashboard" class="w-full h-auto object-cover" style="max-height: clamp(210px, 36vh, 420px);">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-sm font-semibold text-white mb-1 font-geist">Unified P&L Dashboard</h3>
+                            <p class="text-white/60 text-xs leading-relaxed">12+ data sources in one real-time view. Prioritized #1 for immediate impact on decision velocity — the first thing executives open every morning.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="overflow-hidden">
+                            <img src="images/case-studies/AI-Powered.PNG" alt="AI-Powered Forecasting" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(210px, 36vh, 420px);">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-sm font-semibold text-white mb-1 font-geist">AI-Powered Forecasting</h3>
+                            <p class="text-white/60 text-xs leading-relaxed">ML models cut forecast variance 30% and saved 800+ hours/year. The feature that turned skeptics into believers — and opened the door to 100% adoption.</p>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 4: Design Process -->
+    <!-- Section 4: What It Took -->
     <div class="section" id="section-4">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full section-padding">
-                <div class="text-center mb-6">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-6">
-                        Product Development <span class="italic" style="font-family: 'Playfair Display', serif;">Approach</span>
+                <div class="text-center mb-5">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
+                        What It <span class="italic" style="font-family: 'Playfair Display', serif;">Took</span>
                     </h2>
                     <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Data-driven product methodology balancing customer needs with business strategy
+                        The real work — obstacles, tradeoffs, and the pivot that changed everything
                     </p>
                 </div>
 
-                <!-- Design Process Image -->
-                <div class="rounded-2xl overflow-hidden mb-4">
-                    <img src="images/case-studies/DesignProcess.PNG" alt="Design Process - Double Diamond methodology" class="w-full h-auto object-cover responsive-image" loading="lazy">
+                <!-- 2x2 challenge grid -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 class="text-white font-semibold mb-2 text-sm font-geist">Technical Feasibility Risk</h4>
+                        <p class="text-white/70 text-xs leading-relaxed">Navigated a build vs. buy decision for 12+ system integrations. Built the business case for a custom platform against an $800K/year vendor solution — and won on 3-year TCO.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 class="text-white font-semibold mb-2 text-sm font-geist">Adoption Resistance</h4>
+                        <p class="text-white/70 text-xs leading-relaxed">Overcame "Excel is fine" inertia through a phased rollout, a power-user champion program, and quick wins visible in the first 30 days. Users became advocates.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 class="text-white font-semibold mb-2 text-sm font-geist">AI Model Trust</h4>
+                        <p class="text-white/70 text-xs leading-relaxed">Stakeholder confidence in ML forecasts didn't come for free. Built it through transparent model validation, A/B testing against manual forecasts, and explainable AI features.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h4 class="text-white font-semibold mb-2 text-sm font-geist">Executive Buy-In</h4>
+                        <p class="text-white/70 text-xs leading-relaxed">Secured $1.2M investment through ROI modeling and roadmap alignment with CFO, CIO, and SVP Merchandising. Monthly steering committee kept the path clear.</p>
+                    </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-3">
-                    <!-- Discover -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">1. Discovery & Research</h3>
-                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Validate market opportunity and define product-market fit</p>
-                        <ul class="space-y-1 text-xs text-white/60">
-                            <li>• Executive stakeholder interviews (CFO, VP Finance)</li>
-                            <li>• Data audit of 12+ systems and integration points</li>
-                            <li>• User research with 25+ finance team members</li>
-                            <li>• Competitive analysis and build vs. buy assessment</li>
-                        </ul>
-                    </div>
-
-                    <!-- Define -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">2. Strategy & Roadmap</h3>
-                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Define product vision, prioritize features, and build business case</p>
-                        <ul class="space-y-1 text-xs text-white/60">
-                            <li>• Product vision and 18-month roadmap definition</li>
-                            <li>• Feature prioritization using RICE framework</li>
-                            <li>• ROI analysis and executive buy-in presentation</li>
-                            <li>• Success metrics tied to business KPIs</li>
-                        </ul>
-                    </div>
-
-                    <!-- Develop -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">3. Build & Validate</h3>
-                        <p class="text-white/70 leading-relaxed mb-3 text-sm">MVP development with continuous user validation and iteration</p>
-                        <ul class="space-y-1 text-xs text-white/60">
-                            <li>• Agile sprints with bi-weekly releases to beta users</li>
-                            <li>• A/B testing on key workflows and UI patterns</li>
-                            <li>• ML model training with historical financial data</li>
-                            <li>• Product-led iteration based on usage analytics</li>
-                        </ul>
-                    </div>
-
-                    <!-- Deliver -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-2 font-geist">4. Launch & Scale</h3>
-                        <p class="text-white/70 leading-relaxed mb-3 text-sm">Go-to-market execution and data-driven optimization at scale</p>
-                        <ul class="space-y-1 text-xs text-white/60">
-                            <li>• Phased rollout with change management strategy</li>
-                            <li>• Cross-functional GTM: training, comms, support</li>
-                            <li>• KPI tracking dashboards for stakeholder reporting</li>
-                            <li>• Product analytics driving feature iteration roadmap</li>
-                        </ul>
+                <!-- The Shift That Changed Everything — elevated climax card -->
+                <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.12); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.25);">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/80">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-wider text-white/40 mb-1 font-geist">The Shift That Changed Everything</div>
+                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Positioning pivot: from "replacement tool" to "intelligence augmentation"</h3>
+                            <p class="text-white/70 text-sm leading-relaxed">We were six months in and adoption was plateauing. The product was strong — the message wasn't. Finance teams heard "new tool" and heard "job threat." When we reframed the platform as something that made them more strategic — not obsolete — everything shifted. Skeptical users became champions. The remaining rollout accelerated by 3 months. The product didn't change. The story did.</p>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 5: Built Features -->
+    <!-- Section 5: Results -->
     <div class="section" id="section-5">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
-                <div class="text-center mb-1">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-0.5">
-                        Key <span class="italic" style="font-family: 'Playfair Display', serif;">Features</span>
+                <div class="text-center mb-4">
+                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-2">
+                        The <span class="italic" style="font-family: 'Playfair Display', serif;">Results</span>
                     </h2>
-                    <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Prioritized features delivering immediate business value and competitive advantage
+                    <p class="text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
+                        Quantifiable outcomes across efficiency, accuracy, adoption, and strategic impact
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-3">
-                    <!-- Feature 1 -->
-                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="overflow-hidden">
-                            <img src="images/case-studies/UnifiedP&L.PNG" loading="lazy" alt="Unified P&L Dashboard" class="w-full h-auto object-cover" style="max-height: clamp(160px, 25vh, 280px);">
-                        </div>
-                        <div class="p-3">
-                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Unified P&L Dashboard</h3>
-                            <p class="text-white/70 text-xs leading-relaxed">Executive-level product feature consolidating 12+ data sources into single real-time view. Prioritized #1 for immediate business impact on decision velocity.</p>
-                        </div>
+                <!-- 4 primary metric cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div class="p-4 rounded-2xl text-center" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-3xl font-bold text-white mb-1">+30%</div>
+                        <div class="text-white/60 text-xs leading-relaxed">Forecast accuracy improvement</div>
                     </div>
+                    <div class="p-4 rounded-2xl text-center" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-3xl font-bold text-white mb-1">60%</div>
+                        <div class="text-white/60 text-xs leading-relaxed">Faster planning cycles</div>
+                    </div>
+                    <div class="p-4 rounded-2xl text-center" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-3xl font-bold text-white mb-1">1,800+</div>
+                        <div class="text-white/60 text-xs leading-relaxed">Hours saved per year</div>
+                    </div>
+                    <div class="p-4 rounded-2xl text-center" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-3xl font-bold text-white mb-1">100%</div>
+                        <div class="text-white/60 text-xs leading-relaxed">Org adoption in 6 months</div>
+                    </div>
+                </div>
 
-                    <!-- Feature 2 -->
-                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="overflow-hidden">
-                            <img src="images/case-studies/AI-Powered.PNG" alt="AI-Powered Forecasting" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
-                        </div>
-                        <div class="p-3">
-                            <h3 class="text-base font-semibold text-white mb-1 font-geist">AI-Powered Forecasting</h3>
-                            <p class="text-white/70 text-xs leading-relaxed">ML product capability reducing forecast variance 30% and saving 800+ hours/year. Differentiated feature creating competitive moat vs. legacy tools.</p>
+                <!-- Adoption -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h3 class="text-sm font-semibold text-white mb-3 font-geist">Adoption & Engagement</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Active users</span>
+                                <span class="text-white font-semibold text-sm">139+</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Merchandising org adoption</span>
+                                <span class="text-white font-semibold text-sm">100%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Executive P&L visibility</span>
+                                <span class="text-white font-semibold text-sm">Real-time</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="p-4 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <h3 class="text-sm font-semibold text-white mb-3 font-geist">Strategic Impact</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Annual value created</span>
+                                <span class="text-white font-semibold text-sm">$2.4M+</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Planning decisions influenced</span>
+                                <span class="text-white font-semibold text-sm">$1B+</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white/60 text-xs">Decision speed advantage</span>
+                                <span class="text-white font-semibold text-sm">2 weeks faster</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Feature 3 -->
-                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="overflow-hidden">
-                            <img src="images/case-studies/ScenarioPlanning.PNG" alt="Scenario Planning" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
-                        </div>
-                        <div class="p-3">
-                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Scenario Planning</h3>
-                            <p class="text-white/70 text-xs leading-relaxed">Strategic planning tool enabling executives to model market scenarios in minutes vs. weeks. Drove 60% faster planning cycles and increased strategic agility.</p>
-                        </div>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="rounded-2xl overflow-hidden" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="overflow-hidden">
-                            <img src="images/case-studies/Collaborative.PNG" alt="Collaborative Workflows" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(160px, 25vh, 280px);">
-                        </div>
-                        <div class="p-3">
-                            <h3 class="text-base font-semibold text-white mb-1 font-geist">Collaborative Workflows</h3>
-                            <p class="text-white/70 text-xs leading-relaxed">Cross-functional product feature breaking down silos between finance, operations, and merchandising. Enabled 100% org adoption through network effects.</p>
-                        </div>
-                    </div>
+                <!-- Impact & Results image -->
+                <div class="rounded-2xl overflow-hidden">
+                    <img src="images/case-studies/Impact&Results.PNG" loading="lazy" alt="Impact & Results" class="w-full h-auto object-cover" style="max-height: clamp(200px, 34vh, 360px);">
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 6: Impact & Metrics -->
+    <!-- Section 6: What I Learned -->
     <div class="section" id="section-6">
-        <div class="flex h-full pr-6 pl-6 items-center justify-center">
-            <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
-                <div class="text-center mb-1">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-0.5">
-                        Impact & <span class="italic" style="font-family: 'Playfair Display', serif;">Results</span>
-                    </h2>
-                    <p class="text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Quantifiable business outcomes demonstrating product-market fit and ROI
-                    </p>
-                </div>
-
-                <!-- Impact & Results Image -->
-                <div class="rounded-2xl overflow-hidden mb-3">
-                    <img src="images/case-studies/Impact&Results.PNG" loading="lazy" alt="Impact & Results - Measurable outcomes" class="w-full h-auto object-cover" style="max-height: clamp(160px, 25vh, 280px);">
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-3 mb-3">
-                    <!-- Primary Metrics -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="text-base font-semibold text-white mb-3 font-geist">Primary Metrics</h3>
-                        <div class="space-y-2">
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">+30%</div>
-                                <div class="text-white/70 text-xs">Boost in forecast accuracy</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">60%</div>
-                                <div class="text-white/70 text-xs">Faster planning speed</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">1,800+</div>
-                                <div class="text-white/70 text-xs">Hours saved per year</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Secondary Metrics -->
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="text-base font-semibold text-white mb-3 font-geist">Adoption & Engagement</h3>
-                        <div class="space-y-2">
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">139+</div>
-                                <div class="text-white/70 text-xs">Active users across organization</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">100%</div>
-                                <div class="text-white/70 text-xs">Merchandising organization adoption</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-bold text-white mb-0">Real-time</div>
-                                <div class="text-white/70 text-xs">Executive visibility into P&L</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                    <h3 class="text-base font-semibold text-white mb-2 font-geist">Business Impact</h3>
-                    <p class="text-white/70 leading-relaxed mb-3 text-xs">Product achieved 100% adoption within 6 months of launch, delivering $2.4M+ annual value through efficiency gains and improved forecast accuracy. Platform became critical infrastructure for executive decision-making, influencing $1B+ in annual financial planning decisions.</p>
-                    <div class="grid md:grid-cols-3 gap-2 text-xs">
-                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
-                            <div class="text-white font-semibold mb-1">ROI Achievement</div>
-                            <div class="text-white/70">$2.4M annual value creation through time savings and accuracy gains</div>
-                        </div>
-                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
-                            <div class="text-white font-semibold mb-1">Market Differentiation</div>
-                            <div class="text-white/70">AI forecasting created 2-week competitive advantage in decision speed</div>
-                        </div>
-                        <div class="p-2 rounded-lg" style="background: rgba(255, 255, 255, 0.05);">
-                            <div class="text-white font-semibold mb-1">Strategic Enablement</div>
-                            <div class="text-white/70">Platform influences $1B+ annual planning decisions across organization</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- Section 7: Behind the Scenes -->
-    <div class="section" id="section-7">
-        <div class="flex h-full pr-6 pl-6 items-center justify-center">
-            <section class="max-w-6xl w-full" style="padding-top: clamp(1rem, 3vh, 2rem); padding-bottom: clamp(0.1rem, 0.5vh, 0.25rem);">
-                <div class="text-center mb-6">
-                    <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
-                        Behind the <span class="italic" style="font-family: 'Playfair Display', serif;">Scenes</span>
-                    </h2>
-                    <p class="text-base font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Product leadership challenges, stakeholder alignment, and strategic pivots
-                    </p>
-                </div>
-
-                <!-- Behind the Scenes Image -->
-                <div class="rounded-2xl overflow-hidden mb-3">
-                    <img src="images/case-studies/BehindTheScenes.PNG" alt="Behind the Scenes - Challenges and collaboration" class="w-full h-auto object-cover" loading="lazy" style="max-height: clamp(240px, 36vh, 370px);">
-                </div>
-
-                <div class="space-y-3">
-                    <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <h3 class="text-base font-semibold text-white mb-2 font-geist">Key Challenges</h3>
-                        <div class="grid md:grid-cols-2 gap-3">
-                            <div>
-                                <h4 class="text-white font-semibold mb-1 text-sm">Technical Feasibility Risk</h4>
-                                <p class="text-white/70 text-xs leading-relaxed">Navigated build vs. buy decision for 12+ system integrations. Built business case for custom solution vs. $800K/year vendor platform.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1 text-sm">Adoption Resistance</h4>
-                                <p class="text-white/70 text-xs leading-relaxed">Overcame "Excel is fine" mindset through phased rollout, power-user program, and demonstrating quick wins in first 30 days.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1 text-sm">AI Model Trust</h4>
-                                <p class="text-white/70 text-xs leading-relaxed">Built stakeholder confidence in ML forecasts through transparent model validation, A/B testing against manual forecasts, and explainable AI features.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1 text-sm">Executive Buy-In</h4>
-                                <p class="text-white/70 text-xs leading-relaxed">Secured $1.2M investment through ROI modeling, competitive analysis, and executive roadmap alignment across CFO, CIO, and SVP Merchandising.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-3">
-                        <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Cross-Functional Leadership</h3>
-                            <p class="text-white/70 leading-relaxed mb-2 text-xs">Led a 28-person cross-functional team (engineers, data scientists, UX, and business) through agile product development. Established weekly sprint reviews, monthly exec steering committee, and embedded product manager with finance team.</p>
-                            <div class="flex flex-wrap gap-1">
-                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Sprint Planning</span>
-                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Exec Steering</span>
-                                <span class="px-2 py-1 bg-white/10 text-white/80 rounded-full text-xs">Stakeholder Mgmt</span>
-                            </div>
-                        </div>
-
-                        <div class="p-3 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                            <h3 class="text-base font-semibold text-white mb-2 font-geist">Strategic Pivot</h3>
-                            <p class="text-white/70 leading-relaxed text-xs">Product positioning shift from "replacement tool" to "intelligence augmentation" drove adoption breakthrough. Reframed go-to-market messaging from efficiency gains to strategic enablement, turning skeptical users into champions and accelerating org-wide rollout by 3 months.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- Section 8: Key Learnings -->
-    <div class="section" id="section-8">
         <div class="flex h-full pr-6 pl-6 items-center justify-center">
             <section class="max-w-6xl w-full section-padding">
                 <div class="text-center mb-6">
                     <h2 class="responsive-heading-lg tracking-tight font-geist text-white mb-4">
-                        Key <span class="italic" style="font-family: 'Playfair Display', serif;">Learnings</span>
+                        What I <span class="italic" style="font-family: 'Playfair Display', serif;">Learned</span>
                     </h2>
                     <p class="responsive-text-lg font-normal text-white/70 font-geist max-w-3xl mx-auto">
-                        Strategic product lessons from leading enterprise AI/ML platform development
+                        Four lessons I'll carry into every enterprise product I build
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
-                    <!-- Learning 1 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="text-3xl mb-3">💡</div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Product Positioning Drives Adoption</h3>
-                        <p class="text-white/70 leading-relaxed text-sm">How you position AI products determines adoption success. Framing our platform as "intelligence augmentation" vs. "workforce replacement" transformed resistant users into champions, achieving 100% adoption in 6 months. Product-market messaging is as critical as product-market fit.</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-2xl mb-3">💡</div>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Positioning is product work</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">Framing our platform as "intelligence augmentation" vs. "workforce replacement" unlocked 100% adoption. How you name and position a product shapes how people use it — and whether they use it at all.</p>
                     </div>
-
-                    <!-- Learning 2 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="text-3xl mb-3">🤖</div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Build vs. Buy Requires ROI Rigor</h3>
-                        <p class="text-white/70 leading-relaxed text-sm">Led build vs. buy analysis comparing $1.2M custom platform to $800K/year vendor solution. Custom build won through 3-year TCO modeling, competitive differentiation analysis, and strategic platform extensibility. PMs must defend architectural decisions with business cases, not just feature comparisons.</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-2xl mb-3">🤖</div>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Build vs. buy needs a real business case</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">We beat an $800K/year vendor on 3-year TCO, differentiation, and extensibility. PMs have to defend architecture with numbers, not just product instinct — and be willing to be wrong.</p>
                     </div>
-
-                    <!-- Learning 3 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="text-3xl mb-3">⚡</div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Data-Driven Roadmap Prioritization</h3>
-                        <p class="text-white/70 leading-relaxed text-sm">Used RICE framework to prioritize 40+ feature requests, shipping highest-impact features first. Real-time usage analytics (Mixpanel) drove post-launch iteration, with top 3 features accounting for 85% of user value. Ruthless prioritization and measurement beats feature bloat.</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-2xl mb-3">⚡</div>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Ruthless prioritization beats feature completeness</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">RICE scoring across 40+ requests. Top 3 features drove 85% of user value. Shipping the right things fast beats shipping everything slow — especially when adoption is the metric that matters.</p>
                     </div>
-
-                    <!-- Learning 4 -->
-                    <div class="p-4 rounded-2xl" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15);">
-                        <div class="text-3xl mb-3">🎯</div>
-                        <h3 class="responsive-heading-sm font-semibold text-white mb-3 font-geist">Executive Sponsorship is Non-Negotiable</h3>
-                        <p class="text-white/70 leading-relaxed text-sm">Secured CFO, CIO, and SVP Merchandising as executive sponsors before development started. Monthly steering committee with C-suite maintained strategic alignment, unblocked integration bottlenecks, and drove org-wide adoption. Enterprise products require executive air cover—PMs must sell up and across, not just down.</p>
+                    <div class="p-5 rounded-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
+                        <div class="text-2xl mb-3">🎯</div>
+                        <h3 class="text-sm font-semibold text-white mb-2 font-geist">Executive sponsorship isn't optional at enterprise scale</h3>
+                        <p class="text-white/60 text-xs leading-relaxed">CFO, CIO, SVP Merchandising — secured before a line of code was written. Monthly steering committee unblocked integrations that would've taken quarters otherwise. Sell up early or get stuck.</p>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 9: CTA -->
-    <div class="section" id="section-9">
+    <!-- Section 7: CTA -->
+    <div class="section" id="section-7">
         <div class="h-full flex items-center justify-center px-6">
             <section class="max-w-5xl text-center">
                 <div class="mb-8">
@@ -698,7 +515,7 @@
 
     <script>
         window.portfolioConfig = {
-            totalSections: 10
+            totalSections: 8
         };
     </script>
     <script src="js/portfolio-bundle.js"></script>
