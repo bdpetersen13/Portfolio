@@ -163,19 +163,22 @@ body.light-mode .max-w-5xl[style*="background: rgba(255, 255, 255"] {
    ============================================================ */
 
 body.light-mode button[style*="radial-gradient"],
-body.light-mode a[style*="radial-gradient"] {
+body.light-mode a[style*="radial-gradient"],
+body.light-mode span[style*="radial-gradient"] {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15) !important;
   background: radial-gradient(ellipse at bottom, rgba(210, 210, 208, 1) 0%, rgba(235, 234, 231, 1) 100%) !important;
   color: #0a0a0a !important;
 }
 
 body.light-mode button[style*="radial-gradient"] span,
-body.light-mode a[style*="radial-gradient"] span {
+body.light-mode a[style*="radial-gradient"] span,
+body.light-mode span[style*="radial-gradient"] span {
   color: #0a0a0a !important;
 }
 
 body.light-mode button[style*="radial-gradient"] .z-10,
-body.light-mode a[style*="radial-gradient"] .z-10 {
+body.light-mode a[style*="radial-gradient"] .z-10,
+body.light-mode span[style*="radial-gradient"] .z-10 {
   color: #0a0a0a !important;
 }
 
