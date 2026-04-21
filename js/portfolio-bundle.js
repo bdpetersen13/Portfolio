@@ -63,16 +63,23 @@ class CustomCursor {
     this.mouseY = 0;
     this.cursorX = 0;
     this.cursorY = 0;
+    this.hasInitialized = false;
 
     this.snapDistance = options.snapDistance || CURSOR.SNAP_DISTANCE;
     this.snapStrength = options.snapStrength || CURSOR.SNAP_STRENGTH;
     this.easing = options.easing || CURSOR.EASING;
     this.directOverDistance = options.directOverDistance || CURSOR.DIRECT_OVER_DISTANCE;
 
+    // Hide until we know where the mouse actually is
+    this.cursorEl.style.opacity = '0';
+
     this.init();
   }
 
   init() {
+    this.cachedElements = document.querySelectorAll(
+      'button, a, .dot, [onclick], .theme-toggle, .project-card'
+    );
     document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     document.addEventListener('mouseleave', () => this.handleMouseLeave());
     document.addEventListener('mouseenter', () => this.handleMouseEnter());
@@ -80,6 +87,13 @@ class CustomCursor {
   }
 
   handleMouseMove(e) {
+    if (!this.hasInitialized) {
+      // Snap to real position on first move — no slide from (0,0)
+      this.cursorX = e.clientX;
+      this.cursorY = e.clientY;
+      this.hasInitialized = true;
+      this.cursorEl.style.opacity = '1';
+    }
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
   }
@@ -89,13 +103,14 @@ class CustomCursor {
   }
 
   handleMouseEnter() {
-    this.cursorEl.style.opacity = '1';
+    // Only show if we've already placed it at the real position
+    if (this.hasInitialized) {
+      this.cursorEl.style.opacity = '1';
+    }
   }
 
   findMagneticTarget() {
-    const interactiveElements = document.querySelectorAll(
-      'button, a, .dot, [onclick], .theme-toggle, .project-card'
-    );
+    const interactiveElements = this.cachedElements;
 
     let foundTarget = null;
     let minDistance = this.snapDistance;
@@ -153,7 +168,7 @@ class CustomCursor {
     this.cursorEl.style.left = this.cursorX + 'px';
     this.cursorEl.style.top = this.cursorY + 'px';
 
-    requestAnimationFrame(() => this.animate());
+    this.rafId = requestAnimationFrame(() => this.animate());
   }
 }
 
@@ -231,7 +246,10 @@ class SectionNavigation {
     const newSection = document.getElementById(`section-${sectionIndex}`);
 
     if (oldSection) oldSection.classList.remove('active');
-    if (newSection) newSection.classList.add('active');
+    if (newSection) {
+      newSection.classList.add('active');
+      newSection.scrollTop = 0; // reset scroll position when entering a section
+    }
 
     this.currentSection = sectionIndex;
     this.updateDots();
@@ -254,6 +272,20 @@ class SectionNavigation {
   }
 
   handleWheel(e) {
+    // If the active section has overflowing content, let it scroll naturally
+    // until it reaches the top or bottom edge, then navigate sections.
+    const activeSection = document.querySelector('.section.active');
+    if (activeSection) {
+      const { scrollTop, scrollHeight, clientHeight } = activeSection;
+      const isScrollable = scrollHeight > clientHeight + 2;
+      if (isScrollable) {
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 4;
+        const atTop = scrollTop <= 0;
+        if (e.deltaY > 0 && !atBottom) return; // let section scroll down
+        if (e.deltaY < 0 && !atTop) return;    // let section scroll up
+      }
+    }
+
     e.preventDefault();
 
     const now = Date.now();
@@ -322,9 +354,7 @@ class ThemeManager {
   }
 
   init() {
-    window.addEventListener('DOMContentLoaded', () => {
-      this.loadTheme();
-    });
+    this.loadTheme();
     window.toggleTheme = () => this.toggle();
   }
 
@@ -347,16 +377,16 @@ class ThemeManager {
     if (theme === THEMES.LIGHT) {
       this.sunIcon.style.display = 'none';
       this.moonIcon.style.display = 'block';
-      sessionStorage.setItem(THEME_STORAGE_KEY, THEMES.LIGHT);
+      localStorage.setItem(THEME_STORAGE_KEY, THEMES.LIGHT);
     } else {
       this.sunIcon.style.display = 'block';
       this.moonIcon.style.display = 'none';
-      sessionStorage.setItem(THEME_STORAGE_KEY, THEMES.DARK);
+      localStorage.setItem(THEME_STORAGE_KEY, THEMES.DARK);
     }
   }
 
   loadTheme() {
-    const savedTheme = sessionStorage.getItem(THEME_STORAGE_KEY);
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 
     if (savedTheme === THEMES.LIGHT) {
       this.body.classList.add('light-mode');
@@ -383,6 +413,7 @@ class NavbarManager {
 
     this.lastMouseY = 0;
     this.navbarHidden = false;
+    this.hideTimeout = null;
     this.init();
   }
 
@@ -402,15 +433,20 @@ class NavbarManager {
     if (e.clientY < NAVBAR.SHOW_THRESHOLD) {
       this.show();
     } else if (e.clientY > NAVBAR.HIDE_THRESHOLD && !this.navbarHidden) {
-      setTimeout(() => {
-        if (this.lastMouseY > NAVBAR.HIDE_THRESHOLD) {
-          this.hide();
-        }
-      }, TIMING.NAVBAR_HIDE_DELAY);
+      if (!this.hideTimeout) {
+        this.hideTimeout = setTimeout(() => {
+          this.hideTimeout = null;
+          if (this.lastMouseY > NAVBAR.HIDE_THRESHOLD) {
+            this.hide();
+          }
+        }, TIMING.NAVBAR_HIDE_DELAY);
+      }
     }
   }
 
   show() {
+    clearTimeout(this.hideTimeout);
+    this.hideTimeout = null;
     this.navbar.style.transform = 'translateY(0)';
     this.navbarHidden = false;
   }
@@ -447,7 +483,7 @@ class GreetingRotator {
 
   init() {
     this.greetingElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    setInterval(() => this.rotate(), TIMING.GREETING_ROTATION);
+    this.intervalId = setInterval(() => this.rotate(), TIMING.GREETING_ROTATION);
   }
 
   rotate() {
@@ -472,7 +508,10 @@ function initPortfolio(config = {}) {
     enableGreeting = false
   } = config;
 
-  const cursor = new CustomCursor();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  const cursor = (!reduceMotion && !isTouchDevice) ? new CustomCursor() : null;
   const navigation = new SectionNavigation(totalSections);
   window.sectionNav = navigation;
 
@@ -487,8 +526,18 @@ function initPortfolio(config = {}) {
   const navbar = new NavbarManager();
 
   let greeting = null;
-  if (enableGreeting) {
+  if (enableGreeting && !reduceMotion) {
     greeting = new GreetingRotator('greeting');
+  }
+
+  // Navigate to target section if arriving via cross-page link (e.g. About, Contact from other pages)
+  const targetSection = sessionStorage.getItem('targetSection');
+  if (targetSection !== null) {
+    sessionStorage.removeItem('targetSection');
+    const sectionIndex = parseInt(targetSection, 10);
+    if (!isNaN(sectionIndex) && sectionIndex > 0) {
+      setTimeout(() => navigation.goToSection(sectionIndex, true), 100);
+    }
   }
 
   return { cursor, navigation, theme, navbar, greeting };

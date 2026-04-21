@@ -3,16 +3,22 @@
  * All theme-specific overrides and variations
  */
 
-/* Light mode base styles */
+/* ============================================================
+   LIGHT MODE BASE
+   ============================================================ */
+
 body.light-mode {
-  background: white;
+  background: #f5f4f2;
 }
 
 body.light-mode .bg-black {
-  background: white;
+  background: #f5f4f2;
 }
 
-/* Light mode text colors */
+/* ============================================================
+   TEXT COLORS
+   ============================================================ */
+
 body.light-mode .text-white {
   color: #0a0a0a;
 }
@@ -45,24 +51,121 @@ body.light-mode .text-white\/40 {
   color: rgba(10, 10, 10, 0.4);
 }
 
-/* Light mode background gradient */
+/* Pastel accent colors — too light on white; shift to darker equivalents */
+body.light-mode .text-blue-300 {
+  color: rgb(29, 78, 216) !important;    /* blue-700 */
+}
+
+body.light-mode .text-green-300 {
+  color: rgb(21, 128, 61) !important;    /* green-700 */
+}
+
+body.light-mode .text-purple-300 {
+  color: rgb(109, 40, 217) !important;   /* violet-600 */
+}
+
+/* Hover text: buttons/links use hover:text-white — keep text dark in light mode */
+body.light-mode .hover\:text-white:hover {
+  color: #0a0a0a !important;
+}
+
+/* ============================================================
+   PAGE BACKGROUND GRADIENT
+   ============================================================ */
+
 body.light-mode .fixed[style*="background: linear-gradient"] {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #f0f0f0 100%) !important;
-  filter: brightness(1.2);
+  background: linear-gradient(135deg, #f0efed 0%, #e8e6e3 50%, #f0efed 100%) !important;
+  filter: none !important;
 }
 
-/* Light mode tag bubbles */
-body.light-mode span[class*="bg-white/10"] {
-  background: rgba(0, 0, 0, 0.12) !important;
-  color: rgba(10, 10, 10, 0.85) !important;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+/* ============================================================
+   TAILWIND BACKGROUND UTILITY CLASSES
+   ============================================================ */
+
+/* bg-white/10 used on nav active pill, tag spans, inline pills */
+body.light-mode .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.09) !important;
 }
 
-/* Light mode button styles */
+/* hover:bg-white/10 used on nav link hover states */
+body.light-mode .hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* bg-neutral-800 used as image container wrapper on index.html */
+body.light-mode .bg-neutral-800 {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Feature badge backgrounds (index.html section 4) */
+body.light-mode .bg-blue-500\/20 {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+}
+
+body.light-mode .bg-green-500\/20 {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+}
+
+/* ============================================================
+   BORDERS & RINGS
+   ============================================================ */
+
+/* Divider lines between stats, project card separators */
+body.light-mode .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Nav container border, general borders */
+body.light-mode .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Image container ring */
+body.light-mode .ring-white\/10 {
+  --tw-ring-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Feature badge borders */
+body.light-mode .border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+body.light-mode .border-green-500\/30 {
+  border-color: rgba(34, 197, 94, 0.4) !important;
+}
+
+/* ============================================================
+   GLASS CARD COMPONENTS
+   ============================================================ */
+
+/* .glass-card CSS class (contact cards, skill cards, cert cards, impact stats) */
+body.light-mode .glass-card {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Inline-styled glass panels with rgba(255,255,255,...) */
+body.light-mode div[style*="background: rgba(255, 255, 255"] {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Navbar container — more specific, overrides rule above */
+body.light-mode .max-w-5xl[style*="background: rgba(255, 255, 255"] {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
 body.light-mode button[style*="radial-gradient"],
 body.light-mode a[style*="radial-gradient"] {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15) !important;
-  background: radial-gradient(ellipse at bottom, rgba(200, 200, 200, 1) 0%, rgba(230, 230, 230, 1) 100%) !important;
+  background: radial-gradient(ellipse at bottom, rgba(210, 210, 208, 1) 0%, rgba(235, 234, 231, 1) 100%) !important;
   color: #0a0a0a !important;
 }
 
@@ -88,59 +191,23 @@ body.light-mode a[style*="background:transparent"] span {
   color: #0a0a0a !important;
 }
 
-/* Light mode badge styles */
-body.light-mode div[style*="background: rgba(255, 255, 255"] {
-  background: rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  color: #0a0a0a !important;
-}
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 
-/* Light mode navbar background */
-body.light-mode .max-w-5xl[style*="background: rgba(255, 255, 255"] {
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Light mode contact card backgrounds */
-body.light-mode .text-white.rounded-2xl[style*="background: rgba(255, 255, 255"] {
-  background: rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Light mode theme toggle */
 body.light-mode .theme-toggle {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.07);
 }
 
 body.light-mode .theme-toggle:hover {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.12);
 }
 
-/* Light mode skill tags */
-body.light-mode .skill-tag {
-  background: rgba(0, 0, 0, 0.1);
-  color: #0a0a0a;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
 
-body.light-mode .skill-tag:hover {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-/* Light mode project cards */
-body.light-mode .project-card {
-  background: rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-body.light-mode .project-card:hover {
-  border-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Light mode status badges */
 body.light-mode .status-badge.new-case-study {
   background: rgba(34, 197, 94, 0.15);
   color: rgb(21, 128, 61);
@@ -175,13 +242,39 @@ body.light-mode .status-badge.case-study {
   border: 1px solid rgba(245, 158, 11, 0.4);
 }
 
-/* Light mode placeholder images */
-body.light-mode .placeholder-image {
+/* ============================================================
+   SKILL TAGS & PROJECT CARDS
+   ============================================================ */
+
+body.light-mode .skill-tag {
+  background: rgba(0, 0, 0, 0.07);
+  color: #0a0a0a;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .skill-tag:hover {
+  background: rgba(0, 0, 0, 0.11);
+}
+
+body.light-mode .project-card {
   background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .project-card:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================================
+   PLACEHOLDER IMAGES
+   ============================================================ */
+
+body.light-mode .placeholder-image {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 body.light-mode .phone-mockup-placeholder {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }

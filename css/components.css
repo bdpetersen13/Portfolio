@@ -160,3 +160,9 @@
   justify-content: center;
   position: relative;
 }
+
+@media (max-height: 900px) {
+  .phone-mockup-placeholder {
+    max-width: 160px;
+  }
+}
