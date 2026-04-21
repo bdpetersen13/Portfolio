@@ -45,6 +45,7 @@ const GREETINGS = [
   'Grüetzi', 'Hej', 'Merhaba', 'Namaste', 'Sawubona'
 ];
 
+
 const THEME_STORAGE_KEY = 'theme';
 const THEMES = { LIGHT: 'light', DARK: 'dark' };
 
@@ -78,7 +79,7 @@ class CustomCursor {
 
   init() {
     this.cachedElements = document.querySelectorAll(
-      'button, a, .dot, [onclick], .theme-toggle, .project-card'
+      'button, a, .dot, [onclick], .project-card'
     );
     document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     document.addEventListener('mouseleave', () => this.handleMouseLeave());
@@ -342,6 +343,7 @@ class SectionNavigation {
   }
 }
 
+
 // ============================================
 // THEME MANAGER
 // ============================================
@@ -360,7 +362,6 @@ class ThemeManager {
 
   toggle() {
     this.body.classList.toggle('light-mode');
-
     if (this.body.classList.contains('light-mode')) {
       this.setTheme(THEMES.LIGHT);
     } else {
@@ -369,11 +370,7 @@ class ThemeManager {
   }
 
   setTheme(theme) {
-    if (!this.sunIcon || !this.moonIcon) {
-      console.warn('Theme icons not found');
-      return;
-    }
-
+    if (!this.sunIcon || !this.moonIcon) return;
     if (theme === THEMES.LIGHT) {
       this.sunIcon.style.display = 'none';
       this.moonIcon.style.display = 'block';
@@ -387,7 +384,6 @@ class ThemeManager {
 
   loadTheme() {
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-
     if (savedTheme === THEMES.LIGHT) {
       this.body.classList.add('light-mode');
       if (this.sunIcon) this.sunIcon.style.display = 'none';
